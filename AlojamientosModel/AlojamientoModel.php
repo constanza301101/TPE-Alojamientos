@@ -28,4 +28,11 @@ class AlojamientoModel {
         $habitaciones = $query->fetchAll(PDO::FETCH_OBJ);
         return $habitaciones;
     }
+
+    function getHoteles() {
+        $query = $this->db->prepare('SELECT * FROM hotel');
+        $query->execute();
+        $hoteles = $query->fetchAll(PDO::FETCH_OBJ);
+        return $hoteles;
+    }
 }

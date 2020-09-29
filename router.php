@@ -11,5 +11,13 @@ if (isset($_GET['id_hotel'])) {
     $controller->showHabitacionesByHotel();
 }
 else {
-    $controller->showHabitaciones();
+    if (isset($_GET['all'])){
+        if($_GET['all']=='habitaciones'){
+            $controller->showHabitaciones();
+        }
+        if($_GET['all']=='hoteles'){
+            $controller->showHoteles();
+        }
+    }
+    
 }

@@ -19,12 +19,12 @@ class AlojamientoController {
             $this->view->renderError();
             return;
         }
-
+      
         // obtiene el hotel enviado por GET 
         $hotel= $_GET['id_hotel'];
-
         // obtengo las habitaciones del modelo
         $habs = $this->model->getHabitacionesByHotel($hotel);
+
 
         // actualizo la vista
         $this->view->renderHabitacionesByHotel($hotel, $habs);
@@ -38,6 +38,15 @@ class AlojamientoController {
 
         // actualizo la vista
         $this->view->renderHabitaciones($habitaciones);
+    }
+
+    function showHoteles() {
+
+        // llmar el modelo para obtener todas las habitaciones
+        $hoteles = $this->model->getHoteles();
+
+        // actualizo la vista
+        $this->view->renderHoteles($hoteles);
     }
 
 }

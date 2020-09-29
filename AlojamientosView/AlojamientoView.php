@@ -50,6 +50,40 @@ class AlojamientoView {
         </table>";
     }
 
+    function renderHoteles($hoteles) {
+
+        echo "<a href='index.html'> Volver </a>";
+
+        // imprime la tabla de hoteles
+        echo "<table>
+        <thead>
+            <tr>
+                <th>Hotel</th>
+                <th>Localidad</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Valoracion</th>
+                <th>Descripcion</th>
+            </tr>
+        <thead>
+        <tbody>
+        ";
+        foreach($hoteles as $hotel) {
+        echo "
+            <tr>
+                <td>$hotel->nombre</td>
+                <td>$hotel->localidad</td>
+                <td>$hotel->direccion</td>
+                <td>$hotel->telContacto</td>
+                <td>$hotel->valoracion</td>
+                <td>$hotel->descripcion</td>
+            </tr>
+        ";
+        }
+        echo " </tbody>    
+        </table>";
+    }
+
     function renderError() {
         echo "<h2>Error! Hotel no especificado.</h2>";
     }
