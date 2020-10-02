@@ -35,4 +35,8 @@ class AlojamientoModel {
         $hoteles = $query->fetchAll(PDO::FETCH_OBJ);
         return $hoteles;
     }
+
+    //ABM Hotel (categoría)
+    //Alta de un Hotel 
+
 }
