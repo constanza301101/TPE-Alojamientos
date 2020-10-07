@@ -19,5 +19,13 @@ else {
             $controller->showHoteles();
         }
     }
+    if (isset($_GET['op'])){
+        if($_GET['op']=='ins'){
+            $controller->insertHotel();
+        }
+        /*if($_GET['all']=='hoteles'){
+            $controller->showHoteles();
+        }*/
+    }
     
 }

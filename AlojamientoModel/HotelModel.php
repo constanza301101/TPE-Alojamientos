@@ -38,5 +38,14 @@ class AlojamientoModel {
 
     //ABM Hotel (categoría)
     //Alta de un Hotel 
+    function InsertHotel($id_hotel,$localidad,$nombre,$direccion, $tel, $valoracion, $descrip){
+        $sentencia = $this->db->prepare("INSERT INTO hotel(id_hotel, localidad, nombre, direccion, telContacto, valoracion, descripcion) VALUES(?,?,?,?)");
+        $sentencia->execute(array($id_hotel, $localidad, $nombre, $direccion, $tel, $valoracion, $descrip));
+    }
+    
+    function DeleteTaskDelModelo($task_id){
+        $sentencia = $this->db->prepare("DELETE FROM task WHERE id=?");
+        $sentencia->execute(array($task_id));
+    }
 
 }

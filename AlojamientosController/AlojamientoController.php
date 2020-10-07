@@ -1,5 +1,5 @@
 <?php
-require_once 'AlojamientosModel/AlojamientoModel.php';
+require_once 'AlojamientoModel/HotelModel.php';
 require_once 'AlojamientosView/AlojamientoView.php';
 
 class AlojamientoController {
@@ -33,7 +33,7 @@ class AlojamientoController {
 
     function showHabitaciones() {
 
-        // llmar el modelo para obtener todas las habitaciones
+        // obtener todas las habitaciones
         $habitaciones = $this->model->getHabitaciones();
 
         // actualizo la vista
@@ -42,11 +42,15 @@ class AlojamientoController {
 
     function showHoteles() {
 
-        // llmar el modelo para obtener todas las habitaciones
+        // obtener todas las habitaciones
         $hoteles = $this->model->getHoteles();
 
         // actualizo la vista
         $this->view->renderHoteles($hoteles);
     }
 
+    function insertHotel(){
+        $this->view->renderInsertHotel();
+
+    }
 }
