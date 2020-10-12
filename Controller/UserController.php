@@ -1,18 +1,18 @@
 <?php
 
 //añadio el model y el view
-require_once "./TPE/LoginView/LoginView.php"
-require_once "./TPE/LoginModel/LoginView.php"
+require_once "./View/UserView.php";
+require_once "./Model/UserModel.php";
 
 //le assignamos la class
-class LoginController{
+class UserController{
     private $view;
     private $model;
     
     //generar instancia de la clase
     function __construct(){
         //creamos insancia de la clase
-        this->view = new LoginView;
+        $this->view = new LoginView;
     }
 
     //funcion de loguarse con el view
@@ -23,7 +23,7 @@ class LoginController{
     }
 
     //funcion de verificar el usuario
-    function VerificarUsuario{
+    function VerificarUsuario(){
         //nos traemos los datos de la base de datos 
         $IDlogin = $_POST["IDLogin"];
         $email = $_POST["email"];
@@ -69,11 +69,11 @@ class LoginController{
         //session_destroy();
         //redirige al login 
         //header("Location: ".LOGIN);
-    }
-    } 
+    //}
+} 
 
 
 
 
-}
+
 ?>

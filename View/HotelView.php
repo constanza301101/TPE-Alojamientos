@@ -1,7 +1,7 @@
 <?php
 
 
-class AlojamientoView {
+class HotelView {
     
     /**
      * Muestra la lista de habitaciones por hotel

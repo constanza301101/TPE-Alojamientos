@@ -2,14 +2,14 @@
 require_once 'AlojamientoModel/HotelModel.php';
 require_once 'AlojamientosView/AlojamientoView.php';
 
-class AlojamientoController {
+class HotelController {
 
     private $model;
     private $view;
 
     public function __construct() {
-        $this->model = new AlojamientoModel();
-        $this->view = new AlojamientoView();
+        $this->model = new HotelModel();
+        $this->view = new HotelView();
     }
 
     function showHabitacionesByHotel() {
@@ -37,7 +37,7 @@ class AlojamientoController {
         $habitaciones = $this->model->getHabitaciones();
 
         // actualizo la vista
-        $this->view->renderHabitaciones($habitaciones);
+        $this->view->showHabitaciones($habitaciones);
     }
 
     function showHoteles() {
