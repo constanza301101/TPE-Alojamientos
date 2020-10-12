@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2020 a las 05:20:29
+-- Tiempo de generación: 12-10-2020 a las 15:20:24
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `habitacion` (
-  `id` int(11) NOT NULL,
+  `id_habitacion` int(11) NOT NULL,
   `id_hotel` int(11) NOT NULL,
   `capacidadMax` int(11) NOT NULL,
   `cantCamas` int(11) NOT NULL,
@@ -41,7 +41,8 @@ CREATE TABLE `habitacion` (
 --
 -- Volcado de datos para la tabla `habitacion`
 --
-INSERT INTO `habitacion` (`id`, `id_hotel`, `capacidadMax`, `cantCamas`, `cantBanios`, `wifi`, `tv`, `descripcion`) VALUES
+
+INSERT INTO `habitacion` (`id_habitacion`, `id_hotel`, `capacidadMax`, `cantCamas`, `cantBanios`, `wifi`, `tv`, `descripcion`) VALUES
 (1, 1, 5, 3, 1, 1, 1, 'Habitación para 5 personas, cuenta con una cama matrimonial y 3 camas de una plaza, cuenta con Televisión por cable, WiFi, un baño y vista a las sierras'),
 (1, 2, 3, 2, 2, 1, 1, 'NULL'),
 (1, 4, 3, 3, 1, 1, 1, NULL),
@@ -131,6 +132,18 @@ INSERT INTO `hotel` (`id_hotel`, `localidad`, `nombre`, `direccion`, `telContact
 (5, 'Mar del Plata', 'Hotel Sainte Jeanne', 'Martín Miguel de Güemes 2850', '0223 420-9200', '5', NULL),
 (6, 'Mar del Plata', 'Hotel Nuit', 'Alvarado 1452', '0223 451-7360', '5', NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `e-mail` varchar(256) NOT NULL,
+  `password` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Índices para tablas volcadas
 --
@@ -139,7 +152,7 @@ INSERT INTO `hotel` (`id_hotel`, `localidad`, `nombre`, `direccion`, `telContact
 -- Indices de la tabla `habitacion`
 --
 ALTER TABLE `habitacion`
-  ADD PRIMARY KEY (`id`,`id_hotel`),
+  ADD PRIMARY KEY (`id_habitacion`,`id_hotel`),
   ADD KEY `id_hotel` (`id_hotel`);
 
 --
