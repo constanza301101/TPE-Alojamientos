@@ -1,6 +1,6 @@
 <?php
-require_once 'AlojamientoModel/HotelModel.php';
-require_once 'AlojamientosView/AlojamientoView.php';
+require_once 'Model/HotelModel.php';
+require_once 'View/HotelView.php';
 
 class HotelController {
 

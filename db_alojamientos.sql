@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2020 a las 15:20:24
+-- Tiempo de generación: 12-10-2020 a las 15:44:13
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -28,81 +28,82 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `habitacion` (
-  `id_habitacion` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `id_hotel` int(11) NOT NULL,
   `capacidadMax` int(11) NOT NULL,
   `cantCamas` int(11) NOT NULL,
   `cantBanios` int(11) NOT NULL,
   `wifi` tinyint(1) NOT NULL,
   `tv` tinyint(1) NOT NULL,
-  `descripcion` varchar(256) DEFAULT NULL
+  `descripcion` varchar(256) DEFAULT NULL,
+  `estado` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `habitacion`
 --
 
-INSERT INTO `habitacion` (`id_habitacion`, `id_hotel`, `capacidadMax`, `cantCamas`, `cantBanios`, `wifi`, `tv`, `descripcion`) VALUES
-(1, 1, 5, 3, 1, 1, 1, 'Habitación para 5 personas, cuenta con una cama matrimonial y 3 camas de una plaza, cuenta con Televisión por cable, WiFi, un baño y vista a las sierras'),
-(1, 2, 3, 2, 2, 1, 1, 'NULL'),
-(1, 4, 3, 3, 1, 1, 1, NULL),
-(1, 5, 2, 3, 1, 1, 1, NULL),
-(2, 1, 3, 3, 2, 1, 1, 'NULL'),
-(2, 3, 2, 2, 1, 0, 0, 'NULL'),
-(2, 5, 3, 2, 2, 1, 1, 'NULL'),
-(3, 2, 3, 3, 1, 1, 1, NULL),
-(3, 4, 1, 1, 1, 0, 0, 'NULL'),
-(3, 5, 1, 1, 1, 1, 0, 'NULL'),
-(3, 6, 5, 4, 1, 0, 1, NULL),
-(4, 2, 3, 2, 2, 1, 1, 'NULL'),
-(4, 3, 2, 2, 1, 1, 1, 'NULL'),
-(4, 4, 5, 4, 2, 1, 1, 'NULL'),
-(4, 6, 5, 3, 1, 0, 1, NULL),
-(5, 1, 2, 1, 1, 1, 1, 'Habitación para 2 con cama matrimonial, con televisión por cable, WiFi, un baño'),
-(5, 4, 2, 1, 1, 1, 1, NULL),
-(5, 5, 5, 4, 3, 1, 0, 'NULL'),
-(5, 6, 3, 2, 1, 1, 1, 'NULL'),
-(6, 1, 2, 1, 1, 0, 0, 'NULL'),
-(6, 3, 5, 3, 1, 1, 1, NULL),
-(7, 2, 4, 3, 2, 1, 0, 'NULL'),
-(8, 2, 3, 2, 1, 1, 1, NULL),
-(8, 5, 2, 2, 2, 1, 0, NULL),
-(9, 3, 5, 3, 1, 1, 1, NULL),
-(10, 1, 2, 2, 1, 1, 1, 'Habitación para 2 con camas individuales, con televisión por cable, WiFi, un baño'),
-(10, 3, 1, 3, 1, 1, 1, NULL),
-(10, 4, 4, 2, 1, 1, 1, NULL),
-(10, 6, 2, 2, 2, 1, 1, 'NULL'),
-(11, 6, 2, 2, 1, 0, 0, 'NULL'),
-(12, 2, 4, 4, 1, 1, 1, NULL),
-(12, 5, 2, 3, 1, 1, 1, NULL),
-(12, 6, 5, 4, 1, 0, 1, NULL),
-(13, 2, 2, 2, 1, 0, 0, 'NULL'),
-(13, 3, 2, 3, 1, 1, 1, NULL),
-(13, 5, 3, 3, 1, 1, 1, NULL),
-(13, 6, 5, 3, 1, 0, 1, NULL),
-(14, 1, 1, 1, 1, 1, 1, 'NULL'),
-(14, 5, 4, 3, 1, 1, 1, NULL),
-(15, 3, 3, 3, 1, 1, 1, NULL),
-(15, 4, 2, 1, 1, 1, 1, 'NULL\r\n'),
-(16, 3, 4, 3, 1, 1, 1, NULL),
-(16, 4, 2, 1, 1, 1, 0, 'NULL\r\n'),
-(17, 1, 4, 3, 1, 1, 0, 'Habitación amplia, con una cama matrimonial y 2 camas individuales, cuenta con un baño, WiFi y vista al centro de la ciudad'),
-(17, 4, 3, 3, 1, 1, 0, NULL),
-(17, 5, 1, 2, 1, 1, 0, NULL),
-(18, 1, 1, 1, 1, 1, 1, 'NULL'),
-(18, 2, 2, 2, 2, 1, 0, 'NULL'),
-(18, 4, 1, 1, 1, 1, 1, 'NULL'),
-(18, 6, 1, 1, 1, 0, 0, 'NULL'),
-(19, 2, 2, 1, 1, 1, 1, NULL),
-(19, 3, 3, 2, 3, 1, 1, 'NULL'),
-(20, 2, 4, 3, 1, 1, 1, NULL),
-(20, 4, 3, 2, 2, 1, 1, 'NULL'),
-(21, 1, 4, 3, 2, 1, 0, 'NULL'),
-(21, 5, 4, 3, 1, 1, 1, NULL),
-(21, 6, 5, 2, 1, 0, 1, NULL),
-(22, 1, 4, 3, 2, 1, 0, 'NULL'),
-(22, 3, 5, 4, 2, 1, 1, 'NULL'),
-(22, 6, 5, 4, 1, 0, 1, NULL);
+INSERT INTO `habitacion` (`id`, `id_hotel`, `capacidadMax`, `cantCamas`, `cantBanios`, `wifi`, `tv`, `descripcion`, `estado`) VALUES
+(1, 1, 5, 3, 1, 1, 1, 'Habitación para 5 personas, cuenta con una cama matrimonial y 3 camas de una plaza, cuenta con Televisión por cable, WiFi, un baño y vista a las sierras', 0),
+(1, 2, 3, 2, 2, 1, 1, 'NULL', 0),
+(1, 4, 3, 3, 1, 1, 1, NULL, 0),
+(1, 5, 2, 3, 1, 1, 1, NULL, 0),
+(2, 1, 3, 3, 2, 1, 1, 'NULL', 0),
+(2, 3, 2, 2, 1, 0, 0, 'NULL', 0),
+(2, 5, 3, 2, 2, 1, 1, 'NULL', 0),
+(3, 2, 3, 3, 1, 1, 1, NULL, 0),
+(3, 4, 1, 1, 1, 0, 0, 'NULL', 0),
+(3, 5, 1, 1, 1, 1, 0, 'NULL', 0),
+(3, 6, 5, 4, 1, 0, 1, NULL, 0),
+(4, 2, 3, 2, 2, 1, 1, 'NULL', 0),
+(4, 3, 2, 2, 1, 1, 1, 'NULL', 0),
+(4, 4, 5, 4, 2, 1, 1, 'NULL', 0),
+(4, 6, 5, 3, 1, 0, 1, NULL, 0),
+(5, 1, 2, 1, 1, 1, 1, 'Habitación para 2 con cama matrimonial, con televisión por cable, WiFi, un baño', 0),
+(5, 4, 2, 1, 1, 1, 1, NULL, 0),
+(5, 5, 5, 4, 3, 1, 0, 'NULL', 0),
+(5, 6, 3, 2, 1, 1, 1, 'NULL', 0),
+(6, 1, 2, 1, 1, 0, 0, 'NULL', 0),
+(6, 3, 5, 3, 1, 1, 1, NULL, 0),
+(7, 2, 4, 3, 2, 1, 0, 'NULL', 0),
+(8, 2, 3, 2, 1, 1, 1, NULL, 0),
+(8, 5, 2, 2, 2, 1, 0, NULL, 0),
+(9, 3, 5, 3, 1, 1, 1, NULL, 0),
+(10, 1, 2, 2, 1, 1, 1, 'Habitación para 2 con camas individuales, con televisión por cable, WiFi, un baño', 0),
+(10, 3, 1, 3, 1, 1, 1, NULL, 0),
+(10, 4, 4, 2, 1, 1, 1, NULL, 0),
+(10, 6, 2, 2, 2, 1, 1, 'NULL', 0),
+(11, 6, 2, 2, 1, 0, 0, 'NULL', 0),
+(12, 2, 4, 4, 1, 1, 1, NULL, 0),
+(12, 5, 2, 3, 1, 1, 1, NULL, 0),
+(12, 6, 5, 4, 1, 0, 1, NULL, 0),
+(13, 2, 2, 2, 1, 0, 0, 'NULL', 0),
+(13, 3, 2, 3, 1, 1, 1, NULL, 0),
+(13, 5, 3, 3, 1, 1, 1, NULL, 0),
+(13, 6, 5, 3, 1, 0, 1, NULL, 0),
+(14, 1, 1, 1, 1, 1, 1, 'NULL', 0),
+(14, 5, 4, 3, 1, 1, 1, NULL, 0),
+(15, 3, 3, 3, 1, 1, 1, NULL, 0),
+(15, 4, 2, 1, 1, 1, 1, 'NULL\r\n', 0),
+(16, 3, 4, 3, 1, 1, 1, NULL, 0),
+(16, 4, 2, 1, 1, 1, 0, 'NULL\r\n', 0),
+(17, 1, 4, 3, 1, 1, 0, 'Habitación amplia, con una cama matrimonial y 2 camas individuales, cuenta con un baño, WiFi y vista al centro de la ciudad', 0),
+(17, 4, 3, 3, 1, 1, 0, NULL, 0),
+(17, 5, 1, 2, 1, 1, 0, NULL, 0),
+(18, 1, 1, 1, 1, 1, 1, 'NULL', 0),
+(18, 2, 2, 2, 2, 1, 0, 'NULL', 0),
+(18, 4, 1, 1, 1, 1, 1, 'NULL', 0),
+(18, 6, 1, 1, 1, 0, 0, 'NULL', 0),
+(19, 2, 2, 1, 1, 1, 1, NULL, 0),
+(19, 3, 3, 2, 3, 1, 1, 'NULL', 0),
+(20, 2, 4, 3, 1, 1, 1, NULL, 0),
+(20, 4, 3, 2, 2, 1, 1, 'NULL', 0),
+(21, 1, 4, 3, 2, 1, 0, 'NULL', 0),
+(21, 5, 4, 3, 1, 1, 1, NULL, 0),
+(21, 6, 5, 2, 1, 0, 1, NULL, 0),
+(22, 1, 4, 3, 2, 1, 0, 'NULL', 0),
+(22, 3, 5, 4, 2, 1, 1, 'NULL', 0),
+(22, 6, 5, 4, 1, 0, 1, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -152,7 +153,7 @@ CREATE TABLE `usuarios` (
 -- Indices de la tabla `habitacion`
 --
 ALTER TABLE `habitacion`
-  ADD PRIMARY KEY (`id_habitacion`,`id_hotel`),
+  ADD PRIMARY KEY (`id`,`id_hotel`),
   ADD KEY `id_hotel` (`id_hotel`);
 
 --

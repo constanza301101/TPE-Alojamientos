@@ -57,7 +57,7 @@ else {
     $r->addRoute("edit/:ID", "GET", "HabsController", "EditHabById");
 
     //Ruta por defecto.
-    $r->setDefaultRoute("HotelController", "Home");
+    $r->setDefaultRoute("HotelController", "ShowHoteles");
 
     //Advance
     $r->addRoute("autocompletar", "GET", "HabsController", "AutoCompletar");
