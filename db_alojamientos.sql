@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `habitacion` (
-  `id_habitacion` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `id_hotel` int(11) NOT NULL,
   `capacidadMax` int(11) NOT NULL,
   `cantCamas` int(11) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `habitacion` (
 --
 -- Volcado de datos para la tabla `habitacion`
 --
-INSERT INTO `habitacion` (`id_habitacion`, `id_hotel`, `capacidadMax`, `cantCamas`, `cantBanios`, `wifi`, `tv`, `descripcion`) VALUES
+INSERT INTO `habitacion` (`id`, `id_hotel`, `capacidadMax`, `cantCamas`, `cantBanios`, `wifi`, `tv`, `descripcion`) VALUES
 (1, 1, 5, 3, 1, 1, 1, 'Habitación para 5 personas, cuenta con una cama matrimonial y 3 camas de una plaza, cuenta con Televisión por cable, WiFi, un baño y vista a las sierras'),
 (1, 2, 3, 2, 2, 1, 1, 'NULL'),
 (1, 4, 3, 3, 1, 1, 1, NULL),
@@ -139,7 +139,7 @@ INSERT INTO `hotel` (`id_hotel`, `localidad`, `nombre`, `direccion`, `telContact
 -- Indices de la tabla `habitacion`
 --
 ALTER TABLE `habitacion`
-  ADD PRIMARY KEY (`id_habitacion`,`id_hotel`),
+  ADD PRIMARY KEY (`id`,`id_hotel`),
   ADD KEY `id_hotel` (`id_hotel`);
 
 --

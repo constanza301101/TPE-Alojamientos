@@ -23,9 +23,9 @@ else {
         if($_GET['op']=='ins'){
             $controller->insertHotel();
         }
-        /*if($_GET['all']=='hoteles'){
-            $controller->showHoteles();
-        }*/
+        if($_GET['op']=='login'){
+            $controller->Login();
+        }
     }
     
 }

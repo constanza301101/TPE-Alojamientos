@@ -11,15 +11,11 @@ function __construct(){
 
 function MostrarLogin(){
 
-    //hay que hacerlo con smarty 
-    
-    //$smarty = nex smarty (); 
-
+    $smarty = nex smarty (); 
     //le asignamos el titulo y el mensaje 
-    //$smarty->assign('titulo_s', $this->title);
-   // $smarty->assign('message', $message);
-
+    $smarty->assign('titulo_s', $this->title);
+    $smarty->assign('message', $message);
     // muestro el template para el formulario de login
-   // $smarty->display('templates/login.tpl'); 
+    $smarty->display('templates/login.tpl'); 
 }
 ?>
