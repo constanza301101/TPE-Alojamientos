@@ -12,7 +12,7 @@ class UserController{
     //generar instancia de la clase
     function __construct(){
         //creamos insancia de la clase
-        $this->view = new LoginView;
+        $this->view = new UserView();
     }
 
     //funcion de loguarse con el view

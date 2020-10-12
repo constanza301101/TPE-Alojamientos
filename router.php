@@ -1,35 +1,4 @@
 <?php
-/*
-// instancio la clase del controlador
-$controller = new AlojamientoController();
-
-// simulamos un router
-
-
-if (isset($_GET['id_hotel'])) {
-    $controller->showHabitacionesByHotel();
-}
-else {
-    if (isset($_GET['all'])){
-        if($_GET['all']=='habitaciones'){
-            $controller->showHabitaciones();
-        }
-        if($_GET['all']=='hoteles'){
-            $controller->showHoteles();
-        } 
-    }
-    if (isset($_GET['op'])){
-        if($_GET['op']=='ins'){
-            $controller->insertHotel();
-        }
-        if($_GET['op']=='login'){
-            $controller->Login();
-        }
-    }
- 
-    <?php
-
-    */
     require_once 'Controller/HabsController.php';
     require_once 'Controller/UserController.php';
     require_once 'RouterClass.php';
@@ -57,7 +26,7 @@ else {
     $r->addRoute("edit/:ID", "GET", "HabsController", "EditHabById");
 
     //Ruta por defecto.
-    $r->setDefaultRoute("HotelController", "ShowHoteles");
+    $r->setDefaultRoute("HotelController", "showHoteles");
 
     //Advance
     $r->addRoute("autocompletar", "GET", "HabsController", "AutoCompletar");

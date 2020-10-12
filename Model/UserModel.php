@@ -11,12 +11,21 @@ class UserModel{
     //obtenemos los datos de la base de datos 
     //la usamos en el controller 
     function ObtenerUsuario($usario){
-        $sentencia = $this->db->prepare("SELECT * FROM usuarios WHERE email=?");
+        $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE e-mail=?");
         $sentencia->execute(array($usuario));
         //nos devuelve el usuario
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
       
+    function InsertUsuario($id,$mail,$pssw){
+        $sentencia = $this->db->prepare("INSERT INTO usuario (id, e-mail, password) VALUES(?,?,?)");
+        $sentencia->execute(array($id,$mail,$pssw));
+    }
+      
+    function DeleteUsuario($id){
+        $sentencia = $this->db->prepare("DELETE FROM usuario WHERE id=?");
+        $sentencia->execute(array($id));
+    }
 }
 
 ?>

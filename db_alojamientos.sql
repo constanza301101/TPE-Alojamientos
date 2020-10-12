@@ -139,7 +139,7 @@ INSERT INTO `hotel` (`id_hotel`, `localidad`, `nombre`, `direccion`, `telContact
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuarios` (
+CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `e-mail` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL

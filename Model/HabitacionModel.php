@@ -14,7 +14,7 @@ class HabitacionModel{
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function GetTask($id_hab){
+    function GetHab($id_hab){
         $sentencia = $this->db->prepare("SELECT * FROM habitacion WHERE id=?");
         $sentencia->execute(array($id_hab));
         return $sentencia->fetch(PDO::FETCH_OBJ);
@@ -30,9 +30,10 @@ class HabitacionModel{
         $sentencia->execute(array($id));
     }
       
-    function MarkAsCompletedTask($task_id){
-        $sentencia = $this->db->prepare("UPDATE task SET completed=1 WHERE id=?");
-        $sentencia->execute(array($task_id));
+    function UpdateEstado($id){
+        //cuando se reserva una habitacion el estado se carga en 1.
+        $sentencia = $this->db->prepare("UPDATE habitacion SET estado=1 WHERE id=?");
+        $sentencia->execute(array($id));
     }
       
 }
