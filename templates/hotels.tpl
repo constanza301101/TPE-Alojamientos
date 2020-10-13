@@ -1,13 +1,20 @@
 {include file="header.tpl"}
-<div class="container">
+<div class="list-group">
 
-          <ul class="list-group">
-
-              {foreach from=$hoteles item=hotel}
-                    <li class="list-group-item list-group-item-success">{$hotel->nombre|upper}<span class="badge badge-primary badge-pill">{$hotel->direccion}</span> <button type="button" class="btn btn-outline-danger"><a href="delete/{$hotel->id_hotel}">Borrar</a></button></li>
-               {/foreach}
-          
-          </ul>
+     {foreach from=$hoteles item=hotel}
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+          <div class="d-flex w-100 justify-content-between">
+               <h5 class="mb-1">{$hotel->nombre|upper}</h5>
+               <small>3 days ago</small>
+               <button type="button" class="btn btn-outline-danger"><a href="search/{$hotel->id_hotel}">Ver habitaciones</a></button>
           </div>
+          <p class="mb-1">{$hotel->direccion}, {$hotel->localidad}</p>
+          
+          </a>
+          
+     {/foreach}
+</div>
 
 {include file="footer.tpl"}
+
+

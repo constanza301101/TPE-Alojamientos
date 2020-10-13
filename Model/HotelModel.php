@@ -1,6 +1,6 @@
 <?php
 
-class AlojamientoModel {
+class HotelModel {
 
     private $db;
 

@@ -20,7 +20,7 @@ class HotelController {
     function showHoteles() {
 
         // obtener todas las habitaciones
-        $hoteles = $this->model->getHoteles();
+        $hoteles = $this->model->GetHotels();
 
         // actualizo la vista
         $this->view->renderHoteles($hoteles);
