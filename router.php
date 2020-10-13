@@ -13,13 +13,7 @@
     $r = new Router();
 
     // rutas
-    $r->addRoute("home", "GET", "HabsController", "Home");
-    $r->addRoute("login", "GET", "UserController", "Login");
-    $r->addRoute("logout", "GET", "UserController", "Logout");
-
-    $r->addRoute("verifyUser", "POST", "UserController", "VerificarUsuario");
-
-    $r->addRoute("habitaciones", "GET", "HabsController", "Home");
+    $r->addRoute("home", "GET", "HotelController", "Home");
 
     //Esto lo veo en TasksView
     $r->addRoute("insert", "POST", "HabsController", "InsertHab");
@@ -27,7 +21,7 @@
     $r->addRoute("edit/:ID", "GET", "HabsController", "EditHabById");
 
     //Ruta por defecto.
-    $r->setDefaultRoute("HotelController", "showHoteles");
+    $r->setDefaultRoute("HotelController", "Home");
 
     //Advance
     $r->addRoute("autocompletar", "GET", "HabsController", "AutoCompletar");

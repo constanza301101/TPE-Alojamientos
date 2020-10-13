@@ -37,5 +37,13 @@ class HotelView {
       </form> ";
     }
 
+    function renderHoteles($hoteles){
+        $smarty = neW smarty (); 
+        //le asignamos el titulo y el mensaje 
+        $smarty->assign('hoteles', $hoteles);
+        // muestro el template para el formulario de login
+        $smarty->display('templates/hotels.tpl'); 
+    }
+
 }
 ?>

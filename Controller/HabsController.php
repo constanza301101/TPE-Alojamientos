@@ -25,4 +25,6 @@ class HabitacionController {
         $this->view->renderInsertHabitacion();
 
     }
+
+    
 }

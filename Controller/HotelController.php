@@ -12,7 +12,9 @@ class HotelController {
         $this->view = new HotelView();
     }
 
-    
+    function Home(){
+        $this->showHoteles();
+    }
  
 
     function showHoteles() {
