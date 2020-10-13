@@ -1,6 +1,6 @@
 <?php
-require_once 'Model/HabitacionModel.php';
-require_once 'View/HabitacionView.php';
+require_once './Model/HabitacionModel.php';
+require_once './View/HabitacionView.php';
 
 class HabitacionController {
 
