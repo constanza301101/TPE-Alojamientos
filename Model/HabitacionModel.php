@@ -11,7 +11,7 @@ class HabitacionModel{
     function GetHabsPorHotel($a){
         $sentencia = $this->db->prepare("SELECT * FROM habitacion WHERE id_hotel=?");
         $sentencia->execute(array($a));
-        return $sentencia->fetch(PDO::FETCH_OBJ);
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
        
     function GetHabs(){

@@ -6,7 +6,7 @@
                 {include file="NavBar.tpl"}
                     <p>Filtrar por hotel:</p>
                     <form action="habsporhotel" method="POST">
-                        <select name="nombreHotel">
+                        <select name="idHotel">
                               
                         {foreach from=$hoteles item=hotel}
                             <option value={$hotel->id_hotel} >{$hotel->nombre} </option>
@@ -14,7 +14,7 @@
                    
                         </select>
                     <button type="submit">Filtrar</button>
-                    <button><a href="{BASE_URL}habitaciones">Mostrar Todas</a></button>
+                    <button><a href="habitaciones">Mostrar Todas</a></button>
                     </form>
 
                     

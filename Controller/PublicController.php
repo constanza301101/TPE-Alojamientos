@@ -49,9 +49,17 @@
     
         }
          
+        
         function HabitacionesPorHotel($hotel){
-           $habitaciones = $this->HabitacionModel->GetHabsPorHotel($hotel);
-           $this->view->renderHabitaciones($habitaciones);
+            $logeado=$this->checkLoggedIn();
+            if(empty($_POST['idHotel']) || !isset($_POST['idHotel'])){
+                $this->view->showError("No se pudo encontrar las habitaciones. Por favor intentelo nuevamente.", $logeado);
+            }
+            else{
+                $idHotel=$_POST['idHotel'];
+                $habsporhotel=$this->model->GetHabsPorHotel($idHotel);
+                $this->view->renderHabitaciones($habsporhotel);
+            }
         }
 
 

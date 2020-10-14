@@ -9,6 +9,7 @@ class publicView{
     function Home($hoteles){
         $this->smarty->assign('titulo_s', $this->title);
         $this->smarty->assign('hoteles', $hoteles);
+        $this->smarty->assign('logeado', false);
         $this->smarty->display('./templates/index.tpl');
     }
 
@@ -18,6 +19,7 @@ class publicView{
     
     function renderHabitaciones($habitaciones) {
         $this->smarty->assign('habitaciones', $habitaciones);
+        $this->smarty->assign('logeado', false);
         $this->smarty->display('./templates/habitaciones.tpl');
     }
 }

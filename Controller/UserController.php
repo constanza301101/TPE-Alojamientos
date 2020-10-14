@@ -22,54 +22,53 @@ class UserController{
 
     }
 
-    //funcion de verificar el usuario
     function VerificarUsuario(){
-        //nos traemos los datos de la base de datos 
-        $IDlogin = $_POST["IDLogin"];
-        $email = $_POST["email"];
-        $password = $_POST["password"];
+        $logeado=$this->checkLoggedIn();
+        if (empty($_POST['input_email_login']) || !isset($_POST['input_email_login']) || 
+        empty($_POST['input_contraseña_login']) || !isset($_POST['input_contraseña_login'])){
+            $this->view->showError("No se pudo iniciar sesion. Por favor complete todos los campos.", $logeado);
+        }
+        else{
+            $email=$_POST['input_email_login'];
+            $password=$_POST['input_contraseña_login'];
+            $usuarioDB=$this->model->getUsuario($email);
 
-        if(isset($usuario)){
-
-            $usuarioBD = $this->model->ObtenerUsuario($email);{}
-
-            if(isset($email) && $usuarioBD){
-                // Existe el usuario
-                //verificamos el password 
-                if (password_verify($pass, $usuarioBD->password)){
-                    //iniciamos sesion
+            if(isset($usuarioDB) && $usuarioDB){
+                if(password_verify($password, $usuarioDB->password)){
                     session_start();
-                    $_SESSION["IDLogin"] = $usuarioBD->IDLogin;
-                    $_SESSION["EMAIL"] = $usuarioBD->email;
-                    $_SESSION['LAST_ACTIVITY'] = time();
-                    
-                    //nos dirigimos al home
-                    header("Location: ".BASE_URL."home");
-                    die();//equivale al exit
-                }
-                //password incorrercta 
-                else{
-                    $this->view->MostrarLogin("Contraseña incorrecta");
-                }
+                    $_SESSION["email"] = $usuarioDB->email;
 
-            }else{
-                // No existe el user en la DB
-                $this->view->MostrarLogin("El usuario no existe");
+                    $this->view->showHomeLocation();
+                }
+                else{
+                    $this->view->showError("La password ingresada es incorrecta. Por favor intente nuevamente", $logeado);
+                }
+            }
+            else{
+                $this->view->showError("El email ingresado no esta registrado. Por favor intente nuevamente", $logeado);
             }
         }
     }
 
     //chequear si esta logueado
+    private function checkLoggedIn(){
+        session_start();
+        if(!isset($_SESSION['email'])){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
-    //funcion de desloguearse
-    //function Logout(){
-        //session iniciada
-      //  session_start();
-        //sesion cerrrada
-        //session_destroy();
-        //redirige al login 
-        //header("Location: ".LOGIN);
-    //}
+   
+    //log out
+    function Logout(){
+        session_start();
+        session_destroy();
+        $logeado=$this->checkLoggedIn();
+        $this->view->showHomeLocation($logeado);
+    }
 } 
 
 

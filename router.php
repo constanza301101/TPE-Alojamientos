@@ -1,6 +1,6 @@
 <?php
     require_once './Controller/AdminController.php';
-    require_once './Controller/LoginController.php';
+    require_once './Controller/UserController.php';
     require_once './Controller/PublicController.php';
     require_once 'routerClass.php';
     
@@ -16,10 +16,33 @@
     $r->addRoute("home", "GET", "PublicController ", "ShowHome");
     $r->addRoute("habsporhotel", "POST", "PublicController ", "HabitacionesPorHotel");
     $r->addRoute("habitaciones", "GET", "PublicController ", "showHabitaciones");
-    //Esto lo veo en TasksView
+    $r->addRoute("hoteles", "GET", "PublicController ", "showHoteles");
+
+    //Login/Logout
+    $r->addRoute("login", "GET", "UserController", "Login");
+    $r->addRoute("logout", "GET", "UserController", "Logout");
+    $r->addRoute("verificarUser", "POST", "UserController", "VerificarUsuario");
+
+    //admin
     $r->addRoute("insert", "POST", "AdminController", "InsertHab");
     $r->addRoute("delete/:ID", "GET", "AdminController", "DeleteHabById");
     $r->addRoute("edit/:ID", "GET", "AdminController", "EditHabById");
+/*
+    //borrar
+    $r->addRoute("deletePelicula/:ID", "GET", "AdminController", "BorrarPelicula");
+    $r->addRoute("deleteGenero/:ID", "GET", "generoController", "DeleteGenero");
+
+    //insertar
+    $r->addRoute("formularioInsertarPelicula", "GET", "peliculaController", "MostrarFormularioInsertarPelicula");
+    $r->addRoute("insertarPelicula", "POST", "peliculaController", "InsertarPelicula");
+    $r->addRoute("formularioInsertarGenero", "GET", "generoController", "MostrarFormularioInsertarGenero");
+    $r->addRoute("insertarGenero", "POST", "generoController", "InsertarGenero");
+
+    //editar
+    $r->addRoute("formularioEditarPelicula/:ID", "GET", "peliculaController", "MostrarFormularioEditarPelicula");
+    $r->addRoute("editarPelicula/:ID", "POST", "peliculaController", "EditarPelicula");
+    $r->addRoute("formularioEditarGenero/:ID", "GET", "generoController", "MostrarFormularioEditarGenero");
+    $r->addRoute("editarGenero/:ID", "POST", "generoController", "EditarGenero");*/
 
     //Ruta por defecto.
     $r->setDefaultRoute("PublicController", "ShowHome");   
