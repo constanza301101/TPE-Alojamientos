@@ -30,7 +30,7 @@ class HotelModel {
         $sentencia->execute(array($id_hotel));
     }
       
-    function UpdateEstado($id_hotel,$localidad, $nombre, $direccion, $telContacto, $valoracion, $descripcion){
+    function UpdateHotel($id_hotel,$localidad, $nombre, $direccion, $telContacto, $valoracion, $descripcion){
         $sentencia = $this->db->prepare("UPDATE hotel SET id_hotel=?, localidad=?, nombre=?, direccion=?, telContacto=?, valoracion=?, descripcion=? WHERE id_hotel=?");
         $sentencia->execute(array($id_hotel,$localidad, $nombre, $direccion, $telContacto, $valoracion, $descripcion));
     }

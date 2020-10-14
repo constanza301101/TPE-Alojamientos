@@ -15,10 +15,14 @@
     // rutas
     $r->addRoute("home", "GET", "HotelController", "Home");
 
-    //Esto lo veo en TasksView
-    $r->addRoute("insert", "POST", "HabsController", "InsertHab");
-    $r->addRoute("delete/:ID", "GET", "HabsController", "DeleteHabById");
-    $r->addRoute("edit/:ID", "GET", "HabsController", "EditHabById");
+   
+    $r->addRoute("insertHab", "POST", "HabsController", "InsertHab");
+    $r->addRoute("deleteHab/:ID", "GET", "HabsController", "DeleteHabById");
+    $r->addRoute("editHab/:ID", "GET", "HabsController", "EditHabById");
+
+    $r->addRoute("insertHotel", "POST", "HotelController", "InsertHotel");
+    $r->addRoute("deleteHotel/:ID", "GET", "HotelController", "DeleteHotel");
+    $r->addRoute("editHotel/:ID", "GET", "HotelController", "UpdateHotel");
 
     //Ruta por defecto.
     $r->setDefaultRoute("HotelController", "Home");
