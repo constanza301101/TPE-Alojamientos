@@ -3,12 +3,22 @@
 <main class="mainIndex">
             
                 <h1>HOTELERIA</h1>
-                    {include file="NavBar.tpl"}
-                    <ul class="list-group">
+                {include file="NavBar.tpl"}
+                    <p>Filtrar por hotel:</p>
+                    <form action="habsporhotel" method="POST">
+                        <select name="nombreHotel">
+                              
                         {foreach from=$hoteles item=hotel}
-                            <a href='habsporhotel/{$hotel->id_hotel}' ><li class="list-group-item">{$hotel->nombre}</li> </a>
+                            <option value={$hotel->id_hotel} >{$hotel->nombre} </option>
                         {/foreach}
-                    </ul>
+                   
+                        </select>
+                    <button type="submit">Filtrar</button>
+                    <button><a href="{BASE_URL}habitaciones">Mostrar Todas</a></button>
+                    </form>
+
+                    
+                  
 
 
 {include file="footer.tpl"}

@@ -15,7 +15,7 @@
     // rutas
     $r->addRoute("home", "GET", "PublicController ", "ShowHome");
     $r->addRoute("habsporhotel", "POST", "PublicController ", "HabitacionesPorHotel");
-
+    $r->addRoute("habitaciones", "GET", "PublicController ", "showHabitaciones");
     //Esto lo veo en TasksView
     $r->addRoute("insert", "POST", "AdminController", "InsertHab");
     $r->addRoute("delete/:ID", "GET", "AdminController", "DeleteHabById");
