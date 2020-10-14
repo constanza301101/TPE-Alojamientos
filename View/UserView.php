@@ -12,11 +12,7 @@ class UserView{
     }
 
     function MostrarLogin(){
-
-        //le asignamos el titulo y el mensaje 
         $smarty->assign('titulo_s', $this->title);
-        $smarty->assign('message', $message);
-        // muestro el template para el formulario de login
         $smarty->display('templates/login.tpl'); 
     }
     

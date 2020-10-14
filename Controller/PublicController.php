@@ -50,14 +50,13 @@
         }
          
         
-        function HabitacionesPorHotel($hotel){
-            $logeado=$this->checkLoggedIn();
+        function HabitacionesPorHotel(){
             if(empty($_POST['idHotel']) || !isset($_POST['idHotel'])){
                 $this->view->showError("No se pudo encontrar las habitaciones. Por favor intentelo nuevamente.", $logeado);
             }
             else{
                 $idHotel=$_POST['idHotel'];
-                $habsporhotel=$this->model->GetHabsPorHotel($idHotel);
+                $habsporhotel=$this->HotelModel->GetHabsPorHotel($idHotel);
                 $this->view->renderHabitaciones($habsporhotel);
             }
         }
