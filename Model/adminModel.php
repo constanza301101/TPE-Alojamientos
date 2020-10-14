@@ -1,7 +1,5 @@
 <?php
 
-require_once './Controller/AdminController.php';
-
  class AdminModel{
     
     private $db;
