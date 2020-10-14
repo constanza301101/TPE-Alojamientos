@@ -20,15 +20,15 @@
          {foreach from=$Hoteles item=Hotel }
                 <tr id="tabla">
                  <tr>
-                     <td>$Hoteles->id_hotel</td>
-                     <td>$Hoteles->localidad</td>
-                     <td>$Hoteles->nombre</td>
-                     <td>$Hoteles->direccion</td>
-                     <td>$Hoteles->telContato</td>
-                     <td>$Hoteles->valoracion</td>
-                     <td>$Hoteles->descripcion</td>
+                     <td>$Hotel->id_hotel</td>
+                     <td>$Hotel->localidad</td>
+                     <td>$Hotel->nombre</td>
+                     <td>$Hotel->direccion</td>
+                     <td>$Hotel->telContato</td>
+                     <td>$Hotel->valoracion</td>
+                     <td>$Hotel->descripcion</td>
                 </tr>
-                        <td>
+                        <td>//VER CON EL CONTROLLER
                            <div>
                                 <a class="editar" href='editar_hotels/{$habitacion->id}'>Editar</a>
                             </div>

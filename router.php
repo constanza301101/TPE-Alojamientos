@@ -1,7 +1,7 @@
 <?php
-    require_once 'Controller/HabsController.php';
-    require_once 'Controller/HotelController.php';
-    require_once 'Controller/UserController.php';
+    require_once './Controller/AdminController.php';
+    require_once './Controller/LoginController.php';
+    require_once './Controller/PublicController.php';
     require_once 'routerClass.php';
     
     // CONSTANTES PARA RUTEO
@@ -13,22 +13,16 @@
     $r = new Router();
 
     // rutas
-    $r->addRoute("home", "GET", "HotelController", "Home");
+    $r->addRoute("home", "GET", "PublicController ", "ShowHome");
+    $r->addRoute("habsporhotel", "POST", "PublicController ", "HabitacionesPorHotel");
 
-   
-    $r->addRoute("insertHab", "POST", "HabsController", "InsertHab");
-    $r->addRoute("deleteHab/:ID", "GET", "HabsController", "DeleteHabById");
-    $r->addRoute("editHab/:ID", "GET", "HabsController", "EditHabById");
-
-    $r->addRoute("insertHotel", "POST", "HotelController", "InsertHotel");
-    $r->addRoute("deleteHotel/:ID", "GET", "HotelController", "DeleteHotel");
-    $r->addRoute("editHotel/:ID", "GET", "HotelController", "UpdateHotel");
+    //Esto lo veo en TasksView
+    $r->addRoute("insert", "POST", "AdminController", "InsertHab");
+    $r->addRoute("delete/:ID", "GET", "AdminController", "DeleteHabById");
+    $r->addRoute("edit/:ID", "GET", "AdminController", "EditHabById");
 
     //Ruta por defecto.
-    $r->setDefaultRoute("HotelController", "Home");
-
-    //Advance
-    $r->addRoute("autocompletar", "GET", "HabsController", "AutoCompletar");
+    $r->setDefaultRoute("PublicController", "ShowHome");   
 
     //run
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 

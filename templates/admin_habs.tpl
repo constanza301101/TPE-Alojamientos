@@ -30,7 +30,7 @@
                      <td>$habitacion->wifi</td>
                      <td>$habitacion->descripcion</td>
                 </tr>
-                        <td>
+                        <td>//VER CON EL CONRTOLLER
                            <div>
                                 <a class="editar" href='editar_habs/{$habitacion->id}'>Editar</a>
                             </div>
