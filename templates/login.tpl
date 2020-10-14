@@ -2,7 +2,7 @@
 <div class="container">
 
 <div class="alert alert-danger" role="alert">
-    {$message}
+
 </div>
 
        <form action="verifyUser" method="post">
