@@ -1,22 +1,19 @@
 <?php
 
-    require_once ('./Model/HabitacionModel.php');
-    require_once ('./Model/HotelModel.php');
+    require_once ('./Model/PublicModel.php');
     require_once ('./View/PublicView.php');
 
     class PublicController{
-        private $HabitacionModel;
         private $view;
-        private $HotelModel;
+        private $PublicModel;
 
         public function __construct(){
-            $this->HabitacionModel = new HabitacionModel();
-            $this->HotelModel = new HotelModel();
+            $this->PublicModel = new PublicModel();
             $this->view = new PublicView();
         }
 
         function ShowHome(){
-            $hoteles = $this->HotelModel->GetHotels();
+            $hoteles = $this->PublicModel->GetHotels();
             $this->view->Home($hoteles);
         }
         function showHoteles() {
@@ -56,7 +53,7 @@
             }
             else{
                 $idHotel=$_POST['idHotel'];
-                $habsporhotel=$this->HotelModel->GetHabsPorHotel($idHotel);
+                $habsporhotel=$this->PublicModel->GetHabsPorHotel($idHotel);
                 $this->view->renderHabitaciones($habsporhotel);
             }
         }

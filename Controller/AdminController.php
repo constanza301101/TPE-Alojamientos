@@ -115,7 +115,7 @@
                 $WiFi = $_POST['input_Wifi'];
                 $Tv = $_POST['input_tv'];
                 $descripcionHab = $_POST['input_descriptionHab'];
-            $this->AdminModel->ActualizarValoresHab ($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv , $WiFi; $descripcionHab);
+            $this->AdminModel->ActualizarValoresHab ($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv , $WiFi, $descripcionHab);
             $this->UserView->ShowHome();
 
         }
