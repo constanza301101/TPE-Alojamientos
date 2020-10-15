@@ -1,7 +1,7 @@
 <?php
 
 //añadio el model y el view
-require_once "./View/UserView.php";
+require_once "./View/AdminView.php";
 require_once "./Model/UserModel.php";
 
 //le assignamos la class

@@ -1,7 +1,7 @@
 <?php
 
  require_once ('./Model/AdminModel.php');
- require_once ('./View/UserView.php');
+ require_once ('./View/AdminView.php');
  require_once ('UserController.php');
 
  class AdminController{
