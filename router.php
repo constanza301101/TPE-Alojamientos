@@ -1,7 +1,7 @@
 <?php
-    require_once './Controller/AdminController.php';
-    require_once './Controller/UserController.php';
-    require_once './Controller/PublicController.php';
+    require_once 'Controller/AdminController.php';
+    require_once 'Controller/UserController.php';
+    require_once 'Controller/PublicController.php';
     require_once 'routerClass.php';
     
     // CONSTANTES PARA RUTEO
