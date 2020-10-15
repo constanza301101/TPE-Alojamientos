@@ -21,7 +21,7 @@
     //Login/Logout
     $r->addRoute("login", "GET", "UserController", "Login");
     $r->addRoute("logout", "GET", "UserController", "Logout");
-    $r->addRoute("verificarUser", "POST", "UserController", "VerificarUsuario");
+    $r->addRoute("VerificarUsuario", "POST", "UserController", "VerificarUsuario");
     
     $r->addRoute("verMasHabitacion/:IDHA/:IDHO", "GET", "PublicController", "ShowHabitacion");
 

@@ -8,7 +8,7 @@ class UserModel {
     }
      
     function getUsuario($mail){
-        $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE e-mail=?");
+        $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE email=?");
         $sentencia->execute(array($mail));
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }

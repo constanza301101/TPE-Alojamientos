@@ -141,7 +141,7 @@ INSERT INTO `hotel` (`id_hotel`, `localidad`, `nombre`, `direccion`, `telContact
 
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
-  `e-mail` varchar(256) NOT NULL,
+  `email` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

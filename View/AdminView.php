@@ -42,12 +42,17 @@ class AdminView{
     function showLogin($mensaje = ''){
         $this->smarty->assign('titulo', $this->title);
         $this->smarty->assign('logeado', false);
-        $this->smarty->assign('mensaje', $mensaje);
         $this->smarty->display('./templates/login.tpl');
     }
 
+    function showError($mensaje=" ", $logeado){
+        $this->smarty->assign('BASE_URL' , BASE_URL);
+        $this->smarty->assign('logeado',$logeado);
+        $this->smarty->assign('message', $mensaje);
+        $this->smarty->display('./templates/error.tpl');
+    }
 
-    function ShowLoginLocation(){
+    function ShowHomeLocation(){
         header("Location: ".BASE_URL."login");
     }
 
