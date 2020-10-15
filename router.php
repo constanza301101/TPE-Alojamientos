@@ -23,7 +23,7 @@
     $r->addRoute("logout", "GET", "UserController", "Logout");
     $r->addRoute("verificarUser", "POST", "UserController", "VerificarUsuario");
     
-    $r->addRoute("verMasHabitacion/:IDHA/:IDHO", "POST", "PublicController", "ShowHabitacion");
+    $r->addRoute("verMasHabitacion/:IDHA/:IDHO", "GET", "PublicController", "ShowHabitacion");
 
     //admin
 

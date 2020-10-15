@@ -70,12 +70,12 @@
             }
         }
 
-        function showHabitacion($params=null){
+        function ShowHabitacion($params=null){
             $logeado=$this->checkLoggedIn();
             $idHabitacion=$params[':IDHA'];
             $idHotel=$params[':IDHO'];
             $habitacion=$this->PublicModel->GetHab($idHabitacion, $idHotel);
-            $this->view->showMasHabitacion($habitacion, $logeado);
+            $this->view->showMasHabitacion($habitacion,$logeado);
         }
 
 

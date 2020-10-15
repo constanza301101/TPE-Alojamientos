@@ -2,7 +2,6 @@
 {include file="NavBar.tpl" }
 <h1> Habitacion </h1>
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">Habitacion número: {$habitacion->id}</h5>
     
@@ -15,9 +14,8 @@
     {if $habitacion->tv}
       <p class="card-text">Cuenta con tv.</p>
     {/if}
-    <p class="card-text">{$habitacion->descipcion}</p>
+    <p class="card-text">{$habitacion->descripcion}</p>
 
   </div>
 </div>
-{/foreach}
 {include file="footer.tpl" }

@@ -39,8 +39,8 @@ class publicView{
 
     function showMasHabitacion($habitacion, $logeado){
         $this->smarty->assign('BASE_URL' , BASE_URL);
-        $this->smarty->assign('logeado',$logeado);
         $this->smarty->assign('habitacion', $habitacion);
+        $this->smarty->assign('logeado', $logeado);
         $this->smarty->display('./templates/habitacion.tpl');
 
     }
