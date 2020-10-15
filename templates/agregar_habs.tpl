@@ -15,7 +15,7 @@
 <div class="container">
                 <form action="insert" method="post">
                     <div class="form-group">
-                        <label for="priority">habitacion</label>
+                        <label for="priority">Habitacion</label>
                         <input type="text" class="form-control" id="id_habitacion" name="input_habitacion">
                     </div>
                     <div class="form-group">
@@ -23,15 +23,15 @@
                         <input type="text" class="form-control" id="hotel"  name="input_hotel">
                      </div>
                     <div class="form-group">
-                        <label for="priority">capcidad maxima</label>
-                        <input type="text" class="form-control" id="capcidadMaxima"  name="input_capcidadMaxima">
+                        <label for="priority">Capacidad maxima</label>
+                        <input type="text" class="form-control" id="capacidadMaxima"  name="input_capcidadMaxima">
                     </div>
                     <div class="form-group">
-                        <label for="priority">cantidad camas</label>
+                        <label for="priority">Cantidad camas</label>
                         <input type="text" class="form-control" id="cantCamas"  name="input_cantCamas">
                     </div>
                     <div class="form-group">
-                        <label for="priority">cantidad baños</label>
+                        <label for="priority">Cantidad baños</label>
                         <input type="text" class="form-control" id="cantBanios"  name="input_cantBanios">
                     </div>
                     <div class="form-group">

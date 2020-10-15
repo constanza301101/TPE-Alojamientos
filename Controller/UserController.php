@@ -13,13 +13,14 @@ class UserController{
     function __construct(){
         //creamos insancia de la clase
         $this->view = new AdminView();
+        $this->model = new UserModel();
     }
 
     //funcion de loguarse con el view
     function Login(){
         //tengo que ver como lo hago desde 0 con smarty
-        
-        $this->view->showLogin();     
+        $logeado=$this->checkLoggedIn();
+        $this->view->showLogin($logeado);     
 
     }
 
@@ -37,7 +38,7 @@ class UserController{
             if(isset($usuarioDB) && $usuarioDB){
                 if(password_verify($password, $usuarioDB->password)){
                     session_start();
-                    $_SESSION["email"] = $usuarioDB->email;
+                    $_SESSION["email"] = $usuarioDB->e-mail;
 
                     $this->view->showHomeLocation();
                 }

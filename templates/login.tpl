@@ -6,7 +6,7 @@
 
 </div>
 
-       <form action="verifyUser" method="post">
+       <form action="VerificarUsuario" method="POST" id="formulario">
                     <div class="form-group">
                         <label for="user">Usuario</label>
                         <input class="form-control" id="user" name="input_user" aria-describedby="emailHelp">

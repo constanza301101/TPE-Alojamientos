@@ -12,6 +12,18 @@
             $this->view = new PublicView();
         }
 
+
+            //chequear si esta logueado
+        private function checkLoggedIn(){
+            session_start();
+            if(!isset($_SESSION['email'])){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+
         function ShowHome(){
             $hoteles = $this->PublicModel->GetHotels();
             $this->view->Home($hoteles);
@@ -56,6 +68,14 @@
                 $habsporhotel=$this->PublicModel->GetHabsPorHotel($idHotel);
                 $this->view->renderHabitaciones($habsporhotel);
             }
+        }
+
+        function showHabitacion($params=null){
+            $logeado=$this->checkLoggedIn();
+            $idHabitacion=$params[':IDHA'];
+            $idHotel=$params[':IDHO'];
+            $habitacion=$this->PublicModel->GetHab($idHabitacion, $idHotel);
+            $this->view->showMasHabitacion($habitacion, $logeado);
         }
 
 

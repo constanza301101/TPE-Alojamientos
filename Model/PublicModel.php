@@ -20,9 +20,9 @@ class PublicModel{
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function GetHab($id_hab){
-        $sentencia = $this->db->prepare("SELECT * FROM habitacion WHERE id=?");
-        $sentencia->execute(array($id_hab));
+    function GetHab($id_hab, $id_hotel){
+        $sentencia = $this->db->prepare("SELECT * FROM habitacion WHERE id=? and id_hotel=?");
+        $sentencia->execute(array($id_hab, $id_hotel));
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
       
