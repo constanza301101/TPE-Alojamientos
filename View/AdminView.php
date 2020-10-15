@@ -41,6 +41,7 @@ class AdminView{
     
     function showLogin($mensaje = ''){
         $this->smarty->assign('titulo', $this->title);
+        $this->smarty->assign('logeado', false);
         $this->smarty->assign('mensaje', $mensaje);
         $this->smarty->display('./templates/login.tpl');
     }

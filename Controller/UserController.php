@@ -12,13 +12,14 @@ class UserController{
     //generar instancia de la clase
     function __construct(){
         //creamos insancia de la clase
-        $this->view = new UserView();
+        $this->view = new AdminView();
     }
 
     //funcion de loguarse con el view
     function Login(){
         //tengo que ver como lo hago desde 0 con smarty
-        $this->view->MostrarLogin();     
+        
+        $this->view->showLogin();     
 
     }
 

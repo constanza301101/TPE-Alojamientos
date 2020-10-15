@@ -14,7 +14,7 @@
         <a class="nav-link" href="habitaciones">Habitaciones <span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="hotel">Hoteles <span class="sr-only"></span></a>
+        <a class="nav-link" href="hoteles">Hoteles <span class="sr-only"></span></a>
       </li>
       {if $logeado}
             <li class="nav-item active">

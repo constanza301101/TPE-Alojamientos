@@ -22,6 +22,14 @@ class publicView{
         $this->smarty->assign('logeado', false);
         $this->smarty->display('./templates/habitaciones.tpl');
     }
+
+    function renderHoteles($hoteles) {
+        $this->smarty->assign('hoteles', $hoteles);
+        $this->smarty->assign('logeado', false);
+        $this->smarty->display('./templates/hoteles.tpl');
+    }
+
+
     function showError($mensaje=" ", $logeado){
         $this->smarty->assign('BASE_URL' , BASE_URL);
         $this->smarty->assign('logeado',$logeado);

@@ -1,13 +1,14 @@
 {include file="header.tpl"}
+{include file="NavBar.tpl"}
 <div class="container">
 
-<div class="alert alert-danger" role="alert">
+<h1>Login</h1>
 
 </div>
 
        <form action="verifyUser" method="post">
                     <div class="form-group">
-                        <label for="user">Ususario</label>
+                        <label for="user">Usuario</label>
                         <input class="form-control" id="user" name="input_user" aria-describedby="emailHelp">
                 
                     </div>

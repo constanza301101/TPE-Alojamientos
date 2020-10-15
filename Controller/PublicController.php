@@ -19,7 +19,7 @@
         function showHoteles() {
 
             // obtener todas las habitaciones
-            $hoteles = $this->model->GetHotels();
+            $hoteles = $this->PublicModel->GetHotels();
     
             // actualizo la vista
             $this->view->renderHoteles($hoteles);
@@ -35,7 +35,7 @@
         function showHabitaciones() {
 
             // obtener todas las habitaciones
-            $Habitaciones = $this->model->GetHabs();
+            $Habitaciones = $this->PublicModel->GetHabs();
     
             // actualizo la vista
             $this->view->renderHabitaciones($Habitaciones);
