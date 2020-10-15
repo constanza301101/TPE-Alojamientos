@@ -1,10 +1,8 @@
 <?php
 
- require_once ('./Model/HabitacionModel.php');
- require_once ('./Model/HotelModel.php');
  require_once ('./Model/AdminModel.php');
- require_once ('./View/AdminView.php');
- require_once ('LoginController.php');
+ require_once ('./View/UserView.php');
+ require_once ('UserController.php');
 
  class AdminController{
      private $UserView;
