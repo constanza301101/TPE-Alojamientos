@@ -8,3 +8,4 @@
     RewriteRule ^(.*)$ router.php?action=$1 [QSA,L]
 
 </IfModule>
+
