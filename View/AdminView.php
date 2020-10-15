@@ -56,7 +56,7 @@ class AdminView{
         header("Location: ".BASE_URL."login");
     }
 
-    function ShowAdmin(){//tengo que hacer la planilla todavia 
+    function ShowAdmin(){
         header("Location: ".BASE_URL."admin");
     } 
 
