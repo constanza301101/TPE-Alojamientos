@@ -81,6 +81,14 @@
 
         }
     }
+
+    function mostrarFormHotel(){
+        //mostrar form para cargar nuevo hotel
+    }
+
+    function mostrarFormHab(){
+        //mostrarform para cargar nueva hab
+    }
         
     function editarHotel($params = null){
         $this->StillLogueado();
@@ -122,7 +130,7 @@
     }
 
 
-    function  DeleteHoteles($params=null) {
+    function  DeleteHotel($params=null) {
         $id_hotel= $params[':ID'];
         $this->AdminModel->DeleteHotel($id_hotel);
         $this->view->showTablaLocation(); 
