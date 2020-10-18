@@ -1,16 +1,19 @@
 <?php
 
- require_once ('./Model/AdminModel.php');
+ require_once ('./Model/HotelModel.php');
+ require_once ('./Model/HabitacionModel.php');
  require_once ('./View/AdminView.php');
  require_once ('UserController.php');
 
  class AdminController{
      private $UserView;
-     private $AdminModel;
+     private $HabitacionModel;
+     private $HotelModel;
      private $UserModel;
 
      public function __construct(){
-         $this->AdminModel = new AdminModel();
+         $this->HotelModel = new HotelModel();
+         $this->HabitacionModel = new HabitacionModel();
          $this->UserView = new UserView();
          $this->UserModel = new UserModel();
 
@@ -33,14 +36,14 @@
 
     function adminController(){
         $this->StillLogueado();
-        $habitaciones=$this->AdminModel->GetHabs();
-        $hoteles=$this->AdminModel->GetHotels();
+        $habitaciones=$this->HabitacionModel->GetHabs();
+        $hoteles=$this->HotelModel->GetHotels();
         $this->UserView->renderAdmin($habitaciones, $hoteles);
     }
 
     function adminAgregar(){
         $this->StillLogueado();
-        $hoteles=$this->AdminModel->GetHotels();
+        $hoteles=$this->HotelModel->GetHotels();
         $this->UserView->renderInserthotels($hoteles);
     }
 
@@ -103,7 +106,7 @@
             $telContacto = $_POST['input_telContacto'];
             $descripcionHot = $_POST['input_descriptionHot'];
 
-            $this->AdminModel->ActualizVaraloresHot ($hotel, $nombre, $localidad, $direccion, $telContacto, $descripcionHot);
+            $this->HotelModel->ActualizVaraloresHot ($hotel, $nombre, $localidad, $direccion, $telContacto, $descripcionHot);
             $this->UserView->ShowHome();
         }
     }
@@ -123,7 +126,7 @@
                 $WiFi = $_POST['input_Wifi'];
                 $Tv = $_POST['input_tv'];
                 $descripcionHab = $_POST['input_descriptionHab'];
-            $this->AdminModel->ActualizarValoresHab ($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv , $WiFi, $descripcionHab);
+            $this->HabitacionModel->ActualizarValoresHab ($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv , $WiFi, $descripcionHab);
             $this->UserView->ShowHome();
 
         }
@@ -132,13 +135,13 @@
 
     function  DeleteHotel($params=null) {
         $id_hotel= $params[':ID'];
-        $this->AdminModel->DeleteHotel($id_hotel);
+        $this->HotelModel->DeleteHotel($id_hotel);
         $this->view->showTablaLocation(); 
     }
 
     function  DeleteHabitacion($params=null) {
         $id_habitacion= $params[':ID'];
-        $this->AdminModel->DeleteHabitacion($id_hotel);
+        $this->HabitacionModel->DeleteHabitacion($id_habitacion);
         $this->view->showTablaLocation(); 
     } 
 

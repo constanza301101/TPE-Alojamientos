@@ -1,14 +1,17 @@
 <?php
 
-    require_once ('./Model/PublicModel.php');
+    require_once ('./Model/HotelModel.php');
+    require_once ('./Model/HabitacionModel.php');
     require_once ('./View/PublicView.php');
 
     class PublicController{
         private $view;
-        private $PublicModel;
+        private $HabitacionModel;
+        private $HotelModel;
 
         public function __construct(){
-            $this->PublicModel = new PublicModel();
+            $this->HotelModel = new HotelModel();
+            $this->HabitacionModel = new HabitacionModel();
             $this->view = new PublicView();
         }
 
@@ -25,13 +28,13 @@
         }
 
         function ShowHome(){
-            $hoteles = $this->PublicModel->GetHotels();
+            $hoteles = $this->HotelModel->GetHotels();
             $this->view->Home($hoteles);
         }
         function showHoteles() {
 
             // obtener todas las habitaciones
-            $hoteles = $this->PublicModel->GetHotels();
+            $hoteles = $this->HotelModel->GetHotels();
     
             // actualizo la vista
             $this->view->renderHoteles($hoteles);
@@ -47,7 +50,7 @@
         function showHabitaciones() {
 
             // obtener todas las habitaciones
-            $Habitaciones = $this->PublicModel->GetHabs();
+            $Habitaciones = $this->HabitacionModel->GetHabs();
     
             // actualizo la vista
             $this->view->renderHabitaciones($Habitaciones);
@@ -65,7 +68,7 @@
             }
             else{
                 $idHotel=$_POST['idHotel'];
-                $habsporhotel=$this->PublicModel->GetHabsPorHotel($idHotel);
+                $habsporhotel=$this->HabitacionModel->GetHabsPorHotel($idHotel);
                 $this->view->renderHabitaciones($habsporhotel);
             }
         }
@@ -74,7 +77,7 @@
             $logeado=$this->checkLoggedIn();
             $idHabitacion=$params[':IDHA'];
             $idHotel=$params[':IDHO'];
-            $habitacion=$this->PublicModel->GetHab($idHabitacion, $idHotel);
+            $habitacion=$this->HabitacionModel->GetHab($idHabitacion, $idHotel);
             $this->view->showMasHabitacion($habitacion,$logeado);
         }
 
