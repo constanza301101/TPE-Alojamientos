@@ -1,6 +1,6 @@
 <?php
 
-class PublicModel{
+class HabitacionModel{
     private $db;
 
     function __construct(){
@@ -27,14 +27,22 @@ class PublicModel{
     }
       
 
-    //todo
-
-    function GetHotels(){
-        $sentencia = $this->db->prepare("SELECT * FROM hotel");
-        $sentencia->execute();
-        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    //Funciones admin
+    function InsertHab($id,$id_hotel,$capacidadMax,$cantCamas,$cantBanios, $wifi, $tv, $descripcion){
+        $sentencia = $this->db->prepare("INSERT INTO habitacion(id,id_hotel,capacidadMax,cantCamas,cantBanios,wifi,tv, descripcion) VALUES(?,?,?,?,?,?,?,?)");
+        $sentencia->execute(array($id,$id_hotel,$capacidadMax,$cantCamas,$cantBanios, $wifi, $tv, $descripcion));
     }
-
+      
+    function DeleteHab($id){
+        $sentencia = $this->db->prepare("DELETE FROM habitacion WHERE id=?");
+        $sentencia->execute(array($id));
+    }
+    
+    function UpdateEstadoHab($id){
+        //cuando se reserva una habitacion el estado se carga en 1.
+        $sentencia = $this->db->prepare("UPDATE habitacion SET estado=1 WHERE id=?");
+        $sentencia->execute(array($id));
+    }
 
 
 }
