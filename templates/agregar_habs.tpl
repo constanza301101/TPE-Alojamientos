@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label for="priority">TV</label>
-                        <input type="text" class="form-control" id="wifi"  name="input_wifi">
+                        <input type="text" class="form-control" id="TV"  name="input_TV">
                     </div>
                     <div class="form-group">
                         <label for="priority">descripcion</label>
