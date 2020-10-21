@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2020 a las 04:54:36
+-- Tiempo de generación: 22-10-2020 a las 00:57:36
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -141,16 +141,16 @@ INSERT INTO `hotel` (`id_hotel`, `localidad`, `nombre`, `direccion`, `telContact
 
 CREATE TABLE `usuario` (
   `email` varchar(256) NOT NULL,
-  `password` varchar(256) NOT NULL
+  `password` varchar(256) NOT NULL,
+  `id` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`email`, `password`) VALUES
-('coty@gmail.com', 'megustamuchoweb'),
-('maga@gmail.com', 'maga1234');
+INSERT INTO `usuario` (`email`, `password`, `id`) VALUES
+('maga@gmail.com', '$2y$10$3OWZUMXUHdnK0KJ/HqM0bedM7Xy7HorIxX/lL2q0SVJLHTFxiD/tS', '0');
 
 --
 -- Índices para tablas volcadas
@@ -173,7 +173,7 @@ ALTER TABLE `hotel`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Restricciones para tablas volcadas
