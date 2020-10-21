@@ -33,10 +33,10 @@
         {if $logeado}
             <td>
             <div>
-                <button><a href="habitaciones/FormEditHab/{$hab->id}/{$hab->id_hotel}">Editar</a></button>
+                <button><a href="FormEditHab/{$hab->id}/{$hab->id_hotel}">Editar</a></button>
             </div>
             <div>
-                <button><a href="habitaciones/deleteHabitacion/{$hab->id}">Borrar</a></button>
+                <button><a href="deleteHabitacion/{$hab->id}">Borrar</a></button>
             </div>
             </td>
             {/if}
