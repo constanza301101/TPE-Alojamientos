@@ -3,39 +3,33 @@
     require_once ('./Model/HotelModel.php');
     require_once ('./Model/HabitacionModel.php');
     require_once ('./View/PublicView.php');
+    require_once ('./helpers/AuthHelper.php');
+
 
     class PublicController{
         private $view;
         private $HabitacionModel;
         private $HotelModel;
+        private $helper;
 
         public function __construct(){
             $this->HotelModel = new HotelModel();
             $this->HabitacionModel = new HabitacionModel();
             $this->view = new PublicView();
+            $this->helper= new AuthHelper();
         }
 
 
-            //chequear si esta logueado
-        private function checkLoggedIn(){
-            session_start();
-            if(!isset($_SESSION['USUARIO'])){
-                return false;
-            }
-            else{
-                return true;
-            }
-        }
-
-        function ShowHome(){
+        function Home(){
             $hoteles = $this->HotelModel->GetHotels();
-            $this->view->Home($hoteles);
+            $logeado = $this->helper->checkLogIn();
+            $this->view->Home($hoteles, $logeado);
         }
         function showHoteles() {
 
             // obtener todas las habitaciones
             $hoteles = $this->HotelModel->GetHotels();
-            $log = $this->checkLoggedIn();
+            $log = $this->helper->checkLogIn();
             // actualizo la vista
             $this->view->renderHoteles($hoteles,$log);
         }
@@ -51,7 +45,7 @@
 
             // obtener todas las habitaciones
             $Habitaciones = $this->HabitacionModel->GetHabs();
-            $log = $this->checkLoggedIn();
+            $log = $this->helper->checkLogIn();
             // actualizo la vista
             $this->view->renderHabitaciones($Habitaciones, $log);
         }
@@ -74,7 +68,7 @@
         }
 
         function ShowHabitacion($params=null){
-            $logeado=$this->checkLoggedIn();
+            $logeado=$this->helper->checkLogIn();
             $idHabitacion=$params[':IDHA'];
             $idHotel=$params[':IDHO'];
             $habitacion=$this->HabitacionModel->GetHab($idHabitacion, $idHotel);

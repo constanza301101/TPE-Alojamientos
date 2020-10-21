@@ -10,31 +10,37 @@ class AdminView{
         $this->smarty = new Smarty();
     }
   
-    function AgregarHotel($hoteles){
+    function AgregarHotel($hoteles, $logeado){
+        $this->smarty->assign('logeado', $logeado);
         $this->smarty->assign('titulo', $this->title);
         $this->smarty->assign('hoteles', $hoteles);
         $this->smarty->display('./templates/agregar_hotels.tpl');
     }
-    function AgregarHabs($habitaciones){
+    function AgregarHabs($habitaciones,$logeado){
+        $this->smarty->assign('logeado', $logeado);
         $this->smarty->assign('titulo', $this->title);
         $this->smarty->assign('habitaciones', $habitaciones);
         $this->smarty->display('./templates/agregar_habs.tpl');
     }
-    function editarHoteles($hoteles){
+    function editarHoteles($hoteles, $logeado){
+        $this->smarty->assign('logeado', $logeado);
         $this->smarty->assign('titulo', $this->title);
         $this->smarty->assign('hoteles', $hoteles);
         $this->smarty->display('./templates/editar_hotels.tpl');
     }
 
-    function editarHabs($habitacion, $hoteles){
-        
+    function editarHabs($habitacion, $hoteles, $logeado){
+        $this->smarty->assign('logeado', $logeado);
         $this->smarty->assign('hoteles', $hoteles);
         $this->smarty->assign('habitacion', $habitacion);
         $this->smarty->assign('titulo', $this->title);
         $this->smarty->display('./templates/editar_habs.tpl');
     }
 
-    
+    function formNewHab(){
+        $this->smarty->display('./templates/insertHabs.tpl');
+
+    }
     function showLogin($mensaje = ''){
         $this->smarty->assign('titulo', $this->title);
         $this->smarty->assign('logeado', false);
@@ -50,10 +56,12 @@ class AdminView{
         $this->smarty->display('./templates/error.tpl');
     }
 
-    function ShowAdmin(){
+    function showHomeLocation($logeado){
+    
         header("Location: ".BASE_URL."home");
-        
-    } 
+
+    }
+
     function renderHabitaciones($habitaciones, $logeado){
         
         $this->smarty->assign('habitaciones', $habitaciones);

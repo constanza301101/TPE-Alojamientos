@@ -13,12 +13,12 @@
     $r = new Router();
 
     // rutas
-    $r->addRoute("home", "GET", "PublicController", "ShowHome");
+    $r->addRoute("home", "GET", "PublicController", "Home");
     $r->addRoute("habsporhotel", "POST", "PublicController", "HabitacionesPorHotel");
     $r->addRoute("habitaciones", "GET", "PublicController", "showHabitaciones");
     $r->addRoute("hoteles", "GET", "PublicController", "showHoteles");
     
-    //$r->addRoute("habitacionesadmin", "GET", "AdminController", "showHabitaciones");
+   
 
     //Login/Logout
     $r->addRoute("login", "GET", "UserController", "Login");
@@ -30,7 +30,7 @@
    
 
     //Ruta por defecto.
-    $r->setDefaultRoute("PublicController", "ShowHome");   
+    $r->setDefaultRoute("PublicController", "Home");   
 
     //run
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 
@@ -41,19 +41,19 @@
     //Rutas admin
 
     //borrar
-    $r->addRoute("deleteHabitacion/:ID", "GET", "AdminController", "DeleteHabitacion");
+    $r->addRoute("habitaciones/deleteHabitacion/:IDHA/:IDHO", "GET", "AdminController", "DeleteHabitacion");
     $r->addRoute("deleteHotel/:ID", "GET", "AdminController", "DeleteHotel");
 
     //insertar
-    $r->addRoute("FormInsertHab", "GET", "AdminController", "mostrarFormHotel");
-    $r->addRoute("insertarHab", "POST", "AdminController", "agregar_habs");
-    $r->addRoute("FormInsertHotel", "GET", "AdminController", "mostrarFormHab");
+    $r->addRoute("FormInsertHotel", "GET", "AdminController", "mostrarFormHotel");
+    $r->addRoute("habitaciones/insertarHab", "POST", "AdminController", "agregar_habs");
+    $r->addRoute("FormInsertHab", "GET", "AdminController", "mostrarFormInsertHab");
     $r->addRoute("insertarHotel", "POST", "AdminController", "agregar_hotels");
 
     //editar
     $r->addRoute("FormEditHotel/:ID", "GET", "AdminController", "mostrarFormHotel");
     $r->addRoute("editar_habs/:ID", "POST", "AdminController", "editarHabs");
-    $r->addRoute("FormEditHab/:ID", "GET", "AdminController", "mostrarFormHab");
+    $r->addRoute("habitaciones/FormEditHab/:IDHA/:IDHO", "GET", "AdminController", "mostrarFormHab");
     $r->addRoute("editarHotel/:ID", "POST", "AdminController", "editarHotel");
 ?>
 

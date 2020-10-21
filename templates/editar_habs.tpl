@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 {include file="NavBar.tpl"}
-<form action="editarPelicula/{$habitacion}" method="POST">
+<form action="editar_habs/{$habitacion->id}" method="POST">
 
     <div class="tabla_inputs">
         <label>Habitacion</label>
@@ -41,7 +41,7 @@
             </div>
         <div>
             <button type="submit">Editar</button>
-            <button><a href="{BASE_URL}habitacionesadmin">Cancelar</a></button>
+            <button><a href="{BASE_URL}habitaciones">Cancelar</a></button>
         </div>
     </div>
 <form>   

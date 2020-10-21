@@ -33,15 +33,20 @@ class HabitacionModel{
         $sentencia->execute(array($id,$id_hotel,$capacidadMax,$cantCamas,$cantBanios, $wifi, $tv, $descripcion));
     }
       
-    function DeleteHab($id){
-        $sentencia = $this->db->prepare("DELETE FROM habitacion WHERE id=?");
-        $sentencia->execute(array($id));
+    function DeleteHab($id, $hotel){
+        $sentencia = $this->db->prepare("DELETE FROM habitacion WHERE id=? and id_hotel=?");
+        $sentencia->execute(array($id,$hotel));
     }
     
     function UpdateEstadoHab($id){
         //cuando se reserva una habitacion el estado se carga en 1.
         $sentencia = $this->db->prepare("UPDATE habitacion SET estado=1 WHERE id=?");
         $sentencia->execute(array($id));
+    }
+
+    function ActualizarValoresHab ($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv , $WiFi, $descripcionHab){
+        $sentencia = $this->db->prepare("UPDATE habitacion SET id=?, id_hotel=?, capacidadMax=?, cantCamas=?, cantBanios=?, tv=?, WiFi=?, descripcion=?  WHERE id=?");
+        $sentencia->execute(array($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv , $WiFi, $descripcionHab, $habitacion));
     }
 
 
