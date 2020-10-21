@@ -19,7 +19,7 @@
             //chequear si esta logueado
         private function checkLoggedIn(){
             session_start();
-            if(!isset($_SESSION['email'])){
+            if(!isset($_SESSION['USUARIO'])){
                 return false;
             }
             else{
@@ -35,9 +35,9 @@
 
             // obtener todas las habitaciones
             $hoteles = $this->HotelModel->GetHotels();
-    
+            $log = $this->checkLoggedIn();
             // actualizo la vista
-            $this->view->renderHoteles($hoteles);
+            $this->view->renderHoteles($hoteles,$log);
         }
     
         function insertHotel(){
@@ -51,9 +51,9 @@
 
             // obtener todas las habitaciones
             $Habitaciones = $this->HabitacionModel->GetHabs();
-    
+            $log = $this->checkLoggedIn();
             // actualizo la vista
-            $this->view->renderHabitaciones($Habitaciones);
+            $this->view->renderHabitaciones($Habitaciones, $log);
         }
     
         function insertHabitacion(){

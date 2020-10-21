@@ -17,6 +17,8 @@
     $r->addRoute("habsporhotel", "POST", "PublicController", "HabitacionesPorHotel");
     $r->addRoute("habitaciones", "GET", "PublicController", "showHabitaciones");
     $r->addRoute("hoteles", "GET", "PublicController", "showHoteles");
+    
+    //$r->addRoute("habitacionesadmin", "GET", "AdminController", "showHabitaciones");
 
     //Login/Logout
     $r->addRoute("login", "GET", "UserController", "Login");
@@ -50,7 +52,7 @@
 
     //editar
     $r->addRoute("FormEditHotel/:ID", "GET", "AdminController", "mostrarFormHotel");
-    $r->addRoute("editarHab/:ID", "POST", "AdminController", "editarHabs");
+    $r->addRoute("editar_habs/:ID", "POST", "AdminController", "editarHabs");
     $r->addRoute("FormEditHab/:ID", "GET", "AdminController", "mostrarFormHab");
     $r->addRoute("editarHotel/:ID", "POST", "AdminController", "editarHotel");
 ?>

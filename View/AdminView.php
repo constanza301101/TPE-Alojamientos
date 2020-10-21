@@ -6,16 +6,10 @@ require_once './libs/smarty/Smarty.class.php';
 class AdminView{
 
     public function __construct(){
-        $this->title = "HOTELERIA-Usted esta logueado";
+        $this->title = "HOTELERIA";
         $this->smarty = new Smarty();
     }
-    function Admin($habitaciones, $hoteles){
-        $this->smarty->assign('titulo', $this->title);
-        $this->smarty->assign('habitaciones', $habitaciones);
-        $this->smarty->assign('hoteles', $hoteles);
-
-        $this->smarty->display('./templates/admin.tpl');//tengo que hacer la planilla todavia 
-    }
+  
     function AgregarHotel($hoteles){
         $this->smarty->assign('titulo', $this->title);
         $this->smarty->assign('hoteles', $hoteles);
@@ -32,9 +26,11 @@ class AdminView{
         $this->smarty->display('./templates/editar_hotels.tpl');
     }
 
-    function editarHabs($habitaciones){
+    function editarHabs($habitacion, $hoteles){
+        
+        $this->smarty->assign('hoteles', $hoteles);
+        $this->smarty->assign('habitacion', $habitacion);
         $this->smarty->assign('titulo', $this->title);
-        $this->smarty->assign('habitaciones', $habitaciones);
         $this->smarty->display('./templates/editar_habs.tpl');
     }
 
@@ -49,16 +45,22 @@ class AdminView{
         $this->smarty->assign('BASE_URL' , BASE_URL);
         $this->smarty->assign('logeado',$logeado);
         $this->smarty->assign('message', $mensaje);
+        
+        $this->smarty->assign('titulo', $this->title);
         $this->smarty->display('./templates/error.tpl');
     }
 
-    function ShowHomeLocation(){
-        header("Location: ".BASE_URL."login");
-    }
-
     function ShowAdmin(){
-        header("Location: ".BASE_URL."admin");
+        header("Location: ".BASE_URL."home");
+        
     } 
+    function renderHabitaciones($habitaciones, $logeado){
+        
+        $this->smarty->assign('habitaciones', $habitaciones);
+        $this->smarty->assign('titulo_s', $this->title);
+        $this->smarty->assign('logeado', $logeado);
+        $this->smarty->display('./templates/habitaciones.tpl');
+    }
 
 }   
 ?>

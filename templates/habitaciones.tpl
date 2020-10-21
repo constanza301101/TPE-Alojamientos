@@ -25,6 +25,19 @@
                 <td>{$hab->tv}</td>
                 <td><button><a href="verMasHabitacion/{$hab->id}/{$hab->id_hotel}">Ver más</a><button></td>
             </tr>
+            {if $logeado}
+              <td>
+                <div>
+                      <a class="editar" href='FormEditHab/{$habitacion->id}'>Editar</a>
+                  </div>
+                  <div>
+                      <a class="borrar" href='borrar_habs/{$habitacion->id}'> Borrar</a>
+                  </div>
+                  <div>
+                      <a class="agregar" href='agregar_habs/{$habitacion->id}'> Agregar </a>
+                  </div>
+              </td>
+              {/if}
 
     </tbody>
 {/foreach}

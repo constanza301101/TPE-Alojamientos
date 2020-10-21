@@ -9,12 +9,12 @@
        <form action="VerificarUsuario" method="POST" id="formulario">
                     <div class="form-group">
                         <label for="user">Usuario</label>
-                        <input class="form-control" id="user" name="input_user" aria-describedby="emailHelp">
+                        <input class="form-control" id="user" name="inputUser" aria-describedby="emailHelp">
                 
                     </div>
                     <div class="form-group">
                         <label for="pass">Password</label>
-                        <input type="password" class="form-control" id="pass" name="input_pass">
+                        <input type="password" class="form-control" id="pass" name="inputPass">
                     </div>
                     
                     <button type="submit" class="btn btn-primary">Ingresar</button>

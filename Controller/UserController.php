@@ -24,34 +24,27 @@ class UserController{
 
     }
 
-    function VerificarUsuario(){
-        $logeado=$this->checkLoggedIn();
-        if (empty($_POST['input_user']) || !isset($_POST['input_user']) || 
-        empty($_POST['input_pass']) || !isset($_POST['input_pass'])){
-            $this->view->showError("No se pudo iniciar sesion. Por favor complete todos los campos.", $logeado);
-        }
-        else{
-            $email=$_POST['input_user'];
-            $password=$_POST['input_pass'];
-            $usuarioDB=$this->model->getUsuario($email);
+    function VerificarUsuario()
+    {
+        $usuario = $_POST['inputUser'];
+        $contrasena = $_POST['inputPass'];
 
-            if(isset($usuarioDB) && $usuarioDB){
-                session_start();
-                    $_SESSION["email"] = $usuarioDB->email;
-
-                    $this->view->showHomeLocation();
-                if(password_verify($password, $usuarioDB->password)){
+        if (isset($usuario)) {
+            $userFromDB = $this->model->getUsuario($usuario);
+            
+            if ((isset($userFromDB)) && ($userFromDB)) {
+                $password = $userFromDB->password;
+                if (password_verify($contrasena, $password)) {
+                    
                     session_start();
-                    $_SESSION["email"] = $usuarioDB->email;
-
-                    $this->view->showHomeLocation();
+                    $_SESSION['USUARIO'] = $userFromDB->usuario;
+                    $_SESSION['LAST_ACTIVITY'] = time();
+                    $this->view->ShowAdmin();
+                } else {
+                    $this->view->showError("Contraseña incorrecta",$logeado);
                 }
-                else{
-                    $this->view->showError("La password ingresada es incorrecta. Por favor intente nuevamente", $logeado);
-                }
-            }
-            else{
-                $this->view->showError("El email ingresado no esta registrado. Por favor intente nuevamente", $logeado);
+            } else {
+                $this->view->showError("Usuario no registrado",$logeado);
             }
         }
     }
@@ -59,7 +52,7 @@ class UserController{
     //chequear si esta logueado
     private function checkLoggedIn(){
         session_start();
-        if(!isset($_SESSION['email'])){
+        if(!isset($_SESSION['USUARIO'])){
             return false;
         }
         else{

@@ -6,7 +6,7 @@
  require_once ('UserController.php');
 
  class AdminController{
-     private $UserView;
+     private $AdminView;
      private $HabitacionModel;
      private $HotelModel;
      private $UserModel;
@@ -14,41 +14,26 @@
      public function __construct(){
          $this->HotelModel = new HotelModel();
          $this->HabitacionModel = new HabitacionModel();
-         $this->UserView = new UserView();
+         $this->AdminView = new AdminView();
          $this->UserModel = new UserModel();
 
      }
-
-
-    private function StillLogueado(){
+     private function checkLoggedIn(){
         session_start();
-        if (!isset($_SESSION['usuario'])){
-            header("Location: ".BASE_URL."home");
-            die();
-        }else{
-                header("Location: ".BASE_URL."logout");  
-                die();
-            }
-            $_SESSION['timeout'] = time();
+        if(!isset($_SESSION['USUARIO'])){
+            return false;
+        }
+        else{
+            return true;
         }
     }
 
-
-    function adminController(){
-        $this->StillLogueado();
-        $habitaciones=$this->HabitacionModel->GetHabs();
-        $hoteles=$this->HotelModel->GetHotels();
-        $this->UserView->renderAdmin($habitaciones, $hoteles);
-    }
-
     function adminAgregar(){
-        $this->StillLogueado();
         $hoteles=$this->HotelModel->GetHotels();
-        $this->UserView->renderInserthotels($hoteles);
+        $this->AdminView->renderInserthotels($hoteles);
     }
 
     function agregar_hotels(){
-        $this->StillLogueado();
         if((isset($_POST['input_hotel'])) && (isset($_POST['input_localidad'])) 
             && (isset($_POST['input_direccion'])) && (isset($_POST['input_telContacto']))  
             && (isset($_POST['input_Valoracion'])) && (isset($_POST['input_descriptionHot']))){
@@ -60,11 +45,10 @@
             $telContacto = $_POST['input_telContacto'];
             $descripcionHot = $_POST['input_descriptionHot'];
             $this->AdminModel->AgregarHoteles($hotel, $nombre, $localidad, $direccion, $telContacto, $descripcionHot);
-            $this->UserView->ShowAdmin();
+            $this->AdminView->ShowAdmin();
         }
     }
     function agregar_habs(){
-        $this->StillLogueado();
         if((isset($_POST['input_habitacion'])) && (isset($_POST['input_hotel'])) && (isset($_POST['input_capcidadMaxima']))
             && (isset($_POST['input_cantCamas'])) && (isset($_POST['input_cantBanios']))  
             && (isset($_POST['input_Valoracion'])) && (isset($_POST['input_WiFi']))
@@ -80,7 +64,7 @@
             $descripcionHab = $_POST['input_descriptionHab'];
             
             $this->AdminModel->Agregarhabs($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv ,  $descripcionHab);
-            $this->UserView->ShowHome();
+            $this->AdminView->ShowHome();
 
         }
     }
@@ -90,12 +74,14 @@
     }
 
     function mostrarFormHab(){
-        //mostrarform para cargar nueva hab
+        //mostrarform para cargar nueva habitacion o editar una
+        $habitacion=$this->HabitacionModel->GetHab($params[':ID']);
+        $hoteles=$this->HotelModel->GetHotels();
+        $this->AdminView->editarHabs($habitacion,$hoteles);
     }
         
     function editarHotel($params = null){
-        $this->StillLogueado();
-        if((isset($_POST['input_hotel'])) && (isset($_POST['input_localidad'])) && (isset($_POST['input_localidad']))
+        if((isset($_POST['input_hotel'])) &&  (isset($_POST['input_localidad']))
         && (isset($_POST['input_direccion'])) && (isset($_POST['input_telContacto']))  
         && (isset($_POST['input_Valoracion'])) && (isset($_POST['input_descriptionHot']))){
 
@@ -107,15 +93,14 @@
             $descripcionHot = $_POST['input_descriptionHot'];
 
             $this->HotelModel->ActualizVaraloresHot ($hotel, $nombre, $localidad, $direccion, $telContacto, $descripcionHot);
-            $this->UserView->ShowHome();
+            $this->AdminView->ShowHome();
         }
     }
 
     function editarHabs($params = null){
-        $this->StillLogueado();
-        if((isset($_POST['input_habitacion'])) && (isset($_POST['input_hotel'])) && (isset($_POST['input_capcidadMaxima']))
+        if((isset($_POST['input_habitacion'])) && (isset($_POST['input_hotel'])) && (isset($_POST['input_capacidadMaxima']))
                 && (isset($_POST['input_cantCamas'])) && (isset($_POST['input_cantBanios']))  
-                && (isset($_POST['input_Valoracion'])) && (isset($_POST['input_WiFi']))
+                && (isset($_POST['input_WiFi']))
                 && (isset($_POST['input_tv']))&& (isset($_POST['input_descriptionHab']))){
 
                 $habitacion= $_POST['input_habitacion'];
@@ -145,4 +130,6 @@
         $this->view->showTablaLocation(); 
     } 
 
+
+ }
 ?>    
