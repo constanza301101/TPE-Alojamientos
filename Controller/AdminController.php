@@ -39,8 +39,8 @@
             $direccion = $_POST['input_direccion'];
             $telContacto = $_POST['input_telContacto'];
             $descripcionHot = $_POST['input_descriptionHot'];
-            $this->AdminModel->AgregarHoteles($hotel, $nombre, $localidad, $direccion, $telContacto, $descripcionHot);
-            $this->AdminView->ShowAdmin();
+            $this->HotelModel->AgregarHoteles($hotel, $nombre, $localidad, $direccion, $telContacto, $descripcionHot);
+            $this->AdminView->Home();
         }
     }
     
@@ -59,7 +59,7 @@
             $Tv = $_POST['input_tv'];
             $descripcionHab = $_POST['input_descriptionHab'];
             
-            $this->AdminModel->Agregarhabs($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv ,  $descripcionHab);
+            $this->HabitacionModel->InsertHab($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios,  $WiFi, $Tv, $descripcionHab);
             $this->AdminView->Home();
 
         }

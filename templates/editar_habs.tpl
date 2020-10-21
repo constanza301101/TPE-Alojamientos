@@ -21,7 +21,7 @@
             </div>   
             <label>Wifi</label>
                 <div class="respuesta">
-                    <input class="input_WiFi" name="input_WiFi" type="text" value="{$habitacion->WiFi}" placeholder="{$habitacion->WiFi}">
+                    <input class="input_WiFi" name="input_WiFi" type="text" value="{$habitacion->wifi}" placeholder="{$habitacion->WiFi}">
                 </div>
             <label>TV</label>
                 <div class="respuesta">
