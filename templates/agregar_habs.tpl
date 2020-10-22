@@ -1,7 +1,7 @@
 {include file="header.tpl"}
 Inserte los datos de la nueva habitacion:
 <div class="container">
-    <form action="insert" method="post">
+    <form action="insertarHab" method="POST">
         <div class="form-group">
             <label for="priority">Habitacion</label>
             <input type="text" class="form-control" id="id_habitacion" name="input_habitacion">
@@ -15,7 +15,7 @@ Inserte los datos de la nueva habitacion:
         </div>
         <div class="form-group">
             <label for="priority">Capacidad maxima</label>
-            <input type="text" class="form-control" id="capacidadMaxima"  name="input_capcidadMaxima">
+            <input type="text" class="form-control" id="capacidadMaxima"  name="input_capacidadMaxima">
         </div>
         <div class="form-group">
             <label for="priority">Cantidad camas</label>
@@ -35,10 +35,12 @@ Inserte los datos de la nueva habitacion:
         </div>
         <div class="form-group">
             <label for="priority">descripcion</label>
-            <input type="text" class="form-control" id="select"  name="input_select">
+            <input type="text" class="form-control" id="select"  name="input_descripcion">
         </div>
         
-        <button type="submit" class="text-secondary"><a href="{$BASE_URL}">Agregar</a></button>
+        <button type="submit" class="text-secondary">Agregar</button>
+        <button><a href="{BASE_URL}habitaciones">Cancelar</a></button>
+
     </form>
 </div>
 {include file="footer.tpl"}

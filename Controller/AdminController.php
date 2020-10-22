@@ -46,22 +46,20 @@
     }
     
     function agregar_habs(){
-        if((isset($_POST['input_habitacion'])) && (isset($_POST['input_hotel'])) && (isset($_POST['input_capacidadMaxima']))
-            && (isset($_POST['input_cantCamas'])) && (isset($_POST['input_cantBanios']))  
-            && (isset($_POST['input_Valoracion'])) && (isset($_POST['input_WiFi']))
-            && (isset($_POST['input_tv']))&& (isset($_POST['input_descriptionHab']))){
+        if((isset($_POST['input_habitacion'])) && (isset($_POST['input_hotel'])) && (isset($_POST['input_capacidadMaxima'])))
+        {
 
             $habitacion= $_POST['input_habitacion'];
             $hotel = $_POST['input_hotel'];
-            $capacidadMaxima = $_POST['input_capcidadMaxima'];
+            $capacidadMaxima = $_POST['input_capacidadMaxima'];
             $cantCamas = $_POST['input_cantCamas'];
             $cantBanios = $_POST['input_cantBanios'];
             $WiFi = $_POST['input_Wifi'];
-            $Tv = $_POST['input_tv'];
-            $descripcionHab = $_POST['input_descriptionHab'];
+            $Tv = $_POST['input_TV'];
+            $descripcionHab = $_POST['input_descripcion'];
             
             $this->HabitacionModel->InsertHab($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios,  $WiFi, $Tv, $descripcionHab);
-            $this->AdminView->Home();
+            $this->AdminView->renderHabitaciones($this->HabitacionModel->GetHabs(), $this->helper->checkLogIn());
 
         }
     }

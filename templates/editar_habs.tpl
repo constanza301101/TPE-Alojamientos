@@ -40,8 +40,8 @@
                 </select>
             </div>
         <div>
-            <button type="submit">Editar</button>
-            <button><a href="{BASE_URL}habitaciones">Cancelar</a></button>
+        <button type="submit">Editar</button>
+        <button><a href="{BASE_URL}habitaciones">Cancelar</a></button>
         </div>
     </div>
 <form>   
