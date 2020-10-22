@@ -1,4 +1,6 @@
 {include file="header.tpl"}
+{include file="NavBar.tpl"}
+
 Inserte los datos de la nueva habitacion:
 <div class="container">
     <form action="insertarHab" method="POST">

@@ -35,11 +35,11 @@
     $r->addRoute("FormInsertHotel", "GET", "AdminController", "mostrarFormHotel");
     $r->addRoute("insertarHab", "POST", "AdminController", "agregar_habs");
     $r->addRoute("FormInsertHab", "GET", "AdminController", "mostrarFormInsertHab");
-    $r->addRoute("insertarHotel", "POST", "AdminController", "agregar_hotels");
+    $r->addRoute("insertHotel", "POST", "AdminController", "agregar_hotels");
 
     //editar
     $r->addRoute("FormEditHotel/:ID", "GET", "AdminController", "mostrarFormHotel");
-    $r->addRoute("editar_habs/:ID", "POST", "AdminController", "editarHabs");
+    $r->addRoute("editarhab", "POST", "AdminController", "editarHabs");
     $r->addRoute("FormEditHab/:IDHA/:IDHO", "GET", "AdminController", "mostrarFormHab");
     $r->addRoute("editarHotel/:ID", "POST", "AdminController", "editarHotel");
     

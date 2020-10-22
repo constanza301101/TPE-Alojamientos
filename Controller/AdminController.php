@@ -9,6 +9,7 @@
 
  class AdminController{
      private $AdminView;
+     private $publicView;
      private $HabitacionModel;
      private $HotelModel;
      private $UserModel;
@@ -20,28 +21,23 @@
          $this->AdminView = new AdminView();
          $this->UserModel = new UserModel();
         $this->helper= new AuthHelper();
+        $this->publicView= new PublicView();
      }
  
 
-    function adminAgregar(){
-        $hoteles=$this->HotelModel->GetHotels();
-        $this->AdminView->renderInserthotels($hoteles);
-    }
-
     function agregar_hotels(){
         if((isset($_POST['input_hotel'])) && (isset($_POST['input_localidad'])) 
-            && (isset($_POST['input_direccion'])) && (isset($_POST['input_telContacto']))  
-            && (isset($_POST['input_Valoracion'])) && (isset($_POST['input_descriptionHot']))){
+            && (isset($_POST['input_direccion'])) && (isset($_POST['input_telContacto'])))  {
 
             $hotel= $_POST['input_hotel'];
-            $nombre = $_POST['input_Nombre'];
+            $nombre = $_POST['input_nombre'];
             $localidad = $_POST['input_localidad'];
             $direccion = $_POST['input_direccion'];
             $telContacto = $_POST['input_telContacto'];
-            $val = $_POST['input_Valoracion'];
-            $descripcionHot = $_POST['input_descriptionHot'];
-            $this->HotelModel->InsertHotel($hotel,  $localidad, $nombre, $direccion, $telContacto, $val, $descripcionHot);
-            $this->AdminView->Home();
+            $val = $_POST['input_valoracion'];
+            $descripcion = $_POST['input_descripcion'];
+            $this->HotelModel->InsertHotel($hotel,  $localidad, $nombre, $direccion, $telContacto, $val, $descripcion);
+            $this->publicView->renderHoteles($this->HotelModel->GetHotels(), $this->helper->checkLogIn());
         }
     }
     
@@ -95,26 +91,24 @@
             $descripcionHot = $_POST['input_descriptionHot'];
 
             $this->HotelModel->ActualizVaraloresHot($hotel, $nombre, $localidad, $direccion, $telContacto, $descripcionHot);
-            $this->AdminView->Home();
+            $this->publicView->renderHoteles($this->HotelModel->GetHotels(), $this->helper->checkLogIn());
+
         }
     }
 
-    function editarHabs($params = null){
-        if((isset($_POST['input_habitacion'])) && (isset($_POST['input_hotel'])) && (isset($_POST['input_capacidadMaxima']))
-                && (isset($_POST['input_cantCamas'])) && (isset($_POST['input_cantBanios']))  
-                && (isset($_POST['input_WiFi']))
-                && (isset($_POST['input_tv']))&& (isset($_POST['input_descriptionHab']))){
+    function editarHabs(){
+        if((isset($_POST['input_habitacion'])) && (isset($_POST['input_hotel'])) && (isset($_POST['input_capacidadMaxima']))){
+            $habitacion= $_POST['input_habitacion'];
+            $hotel = $_POST['input_hotel'];
+            $capacidadMaxima = $_POST['input_capacidadMaxima'];
+            $cantCamas = $_POST['input_cantCamas'];
+            $cantBanios = $_POST['input_cantBanios'];
+            $WiFi = $_POST['input_Wifi'];
+            $Tv = $_POST['input_tv'];
+            $descripcionHab = $_POST['input_descriptionHab'];
+            $this->HabitacionModel->ActualizarValoresHab($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv , $WiFi, $descripcionHab, $idHabitacion,$idHotel);
+            $this->AdminView->renderHabitaciones($this->HabitacionModel->GetHabs(),$this->helper->checkLogIn()); 
 
-                $habitacion= $_POST['input_habitacion'];
-                $hotel = $_POST['input_hotel'];
-                $capacidadMaxima = $_POST['input_capcidadMaxima'];
-                $cantCamas = $_POST['input_cantCamas'];
-                $cantBanios = $_POST['input_cantBanios'];
-                $WiFi = $_POST['input_Wifi'];
-                $Tv = $_POST['input_tv'];
-                $descripcionHab = $_POST['input_descriptionHab'];
-            $this->HabitacionModel->ActualizarValoresHab($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv , $WiFi, $descripcionHab);
-            $this->AdminView->ShowHome();
 
         }else {
             $this->AdminView->showError("Ingrese todos los campos", $this->helper->checkLogIn());
@@ -125,7 +119,8 @@
     function  DeleteHotel($params=null) {
         $id_hotel= $params[':ID'];
         $this->HotelModel->DeleteHotel($id_hotel);
-        $this->AdminViewiew->showTablaLocation(); 
+        $this->publicView->renderHoteles($this->HotelModel->GetHotels(), $this->helper->checkLogIn());
+
     }
 
     function  DeleteHabitacion($params=null) {

@@ -1,37 +1,24 @@
 {include file="header.tpl"}
-<div class="list-group">
+{include file="NavBar.tpl"}
 
-     {foreach from=$hoteles item=hotel}
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-          <div class="d-flex w-100 justify-content-between">
-               <h5 class="mb-1">{$hotel->nombre|upper}</h5>
-               <small>3 days ago</small>
-               <button type="button" class="btn btn-outline-danger"><a href="search/{$hotel->id_hotel}">Ver habitaciones</a></button>
-          </div>
-          <p class="mb-1">{$hotel->direccion}, {$hotel->localidad}</p>
-          
-          </a>
-          
-     {/foreach}
-</div>
 
     <div class="container">
-                <form action="insert" method="post">
+                <form action="insertHotel" method="post">
                     <div class="form-group">
                         <label for="description">ID hotel</label>
                         <input class="form-control" id="description" name="input_hotel">
                     </div>
                     <div class="form-group">
                         <label for="priority">Nombre</label>
-                        <input type="text" class="form-control" id="Nombre"  name="input_Nombre">
+                        <input type="text" class="form-control" id="nombre"  name="input_nombre">
                     </div>
                     <div class="form-group">
-                        <label for="priority">localidad</label>
+                        <label for="priority">Localidad</label>
                         <input type="text" class="form-control" id="localidad"  name="input_localidad">
                     </div>
                     <div class="form-group">
-                        <label for="priority">Nombre</label>
-                        <input type="text" class="form-control" id="Nombre"  name="input_Nombre">
+                        <label for="priority">Direccion</label>
+                        <input type="text" class="form-control" id="direccion"  name="input_direccion">
                     </div>
                     <div class="form-group">
                         <label for="priority">telefono/Contacto</label>
@@ -39,11 +26,11 @@
                      </div>
                      <div class="form-group">
                         <label for="priority">Valoracion</label>
-                        <input type="number" class="form-control" id="Valoracion"  name="input_Valoracion">
+                        <input type="number" class="form-control" id="valoracion"  name="input_valoracion">
                     </div>
                     <div class="form-group">
-                        <label for="priority">Select</label>
-                        <input type="text" class="form-control" id="Select"  name="input_Select>
+                        <label for="priority">Descripcion</label>
+                        <input type="text" class="form-control" id="Select"  name="input_descripcion>
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="input_completed" name="input_completed">

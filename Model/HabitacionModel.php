@@ -45,8 +45,8 @@ class HabitacionModel{
     }
 
     function ActualizarValoresHab ($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv , $WiFi, $descripcionHab){
-        $sentencia = $this->db->prepare("UPDATE habitacion SET id=?, id_hotel=?, capacidadMax=?, cantCamas=?, cantBanios=?, tv=?, WiFi=?, descripcion=?  WHERE id=?");
-        $sentencia->execute(array($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv , $WiFi, $descripcionHab, $habitacion));
+        $sentencia = $this->db->prepare("UPDATE habitacion SET id=?, id_hotel=?, capacidadMax=?, cantCamas=?, cantBanios=?, tv=?, wifi=?, descripcion=?  WHERE id=? and id_hotel=?");
+        $sentencia->execute(array($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv , $WiFi, $descripcionHab, $habitacion, $id_hotel));
     }
 
 
