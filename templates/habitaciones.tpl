@@ -36,7 +36,7 @@
                 <button><a href="FormEditHab/{$hab->id}/{$hab->id_hotel}">Editar</a></button>
             </div>
             <div>
-                <button><a href="deleteHabitacion/{$hab->id}">Borrar</a></button>
+                <button><a href="deleteHabitacion/{$hab->id}/{$hab->id_hotel}">Borrar</a></button>
             </div>
             </td>
             {/if}

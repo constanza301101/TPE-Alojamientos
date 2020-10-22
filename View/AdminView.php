@@ -16,11 +16,14 @@ class AdminView{
         $this->smarty->assign('hoteles', $hoteles);
         $this->smarty->display('./templates/agregar_hotels.tpl');
     }
-    function AgregarHabs($habitaciones,$logeado){
+    function AgregarHabs($hoteles,$logeado){
         $this->smarty->assign('logeado', $logeado);
         $this->smarty->assign('titulo', $this->title);
-        $this->smarty->assign('habitaciones', $habitaciones);
+        $this->smarty->assign('hoteles', $hoteles);
+        $this->smarty->assign('BASE_URL' , BASE_URL);
+
         $this->smarty->display('./templates/agregar_habs.tpl');
+
     }
     function editarHoteles($hoteles, $logeado){
         $this->smarty->assign('logeado', $logeado);
@@ -34,13 +37,12 @@ class AdminView{
         $this->smarty->assign('hoteles', $hoteles);
         $this->smarty->assign('habitacion', $habitacion);
         $this->smarty->assign('titulo', $this->title);
+        $this->smarty->assign('BASE_URL' , BASE_URL);
+
         $this->smarty->display('./templates/editar_habs.tpl');
     }
 
-    function formNewHab(){
-        $this->smarty->display('./templates/insertHabs.tpl');
-
-    }
+   
     function showLogin($mensaje = ''){
         $this->smarty->assign('titulo', $this->title);
         $this->smarty->assign('logeado', false);

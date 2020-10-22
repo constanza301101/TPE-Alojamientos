@@ -27,19 +27,6 @@
     
     $r->addRoute("verMasHabitacion/:IDHA/:IDHO", "GET", "PublicController", "ShowHabitacion");
 
-   
-
-    //Ruta por defecto.
-    $r->setDefaultRoute("PublicController", "Home");   
-
-    //run
-    $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 
-
-
-
-
-    //Rutas admin
-
     //borrar
     $r->addRoute("deleteHabitacion/:IDHA/:IDHO", "GET", "AdminController", "DeleteHabitacion");
     $r->addRoute("deleteHotel/:ID", "GET", "AdminController", "DeleteHotel");
@@ -55,6 +42,13 @@
     $r->addRoute("editar_habs/:ID", "POST", "AdminController", "editarHabs");
     $r->addRoute("FormEditHab/:IDHA/:IDHO", "GET", "AdminController", "mostrarFormHab");
     $r->addRoute("editarHotel/:ID", "POST", "AdminController", "editarHotel");
+    
+    //Ruta por defecto.
+    $r->setDefaultRoute("PublicController", "Home");  
+ 
+
+    //run
+    $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 
 ?>
 
 
