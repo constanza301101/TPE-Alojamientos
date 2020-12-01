@@ -14,8 +14,6 @@
         <th scope="col">Cantidad baños</th>
         <th scope="col">WiFi</th>
         <th scope="col">TV</th>
-        <th scope="col"> </th>
-        <th scope="col"> </th>
     </tr>
   </thead>
 {foreach from=$habitaciones item=hab}
