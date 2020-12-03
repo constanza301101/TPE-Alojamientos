@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2020 a las 00:57:36
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.4.9
+-- Tiempo de generación: 02-12-2020 a las 13:52:39
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `db_alojamientos`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id` int(11) NOT NULL,
+  `id_usuario` varchar(55) NOT NULL,
+  `id_habitacion` int(11) NOT NULL,
+  `id_hotel` int(11) NOT NULL,
+  `puntuaje` int(11) NOT NULL,
+  `comentario` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -44,7 +59,6 @@ CREATE TABLE `habitacion` (
 --
 
 INSERT INTO `habitacion` (`id`, `id_hotel`, `capacidadMax`, `cantCamas`, `cantBanios`, `wifi`, `tv`, `descripcion`, `estado`) VALUES
-(1, 1, 5, 3, 1, 1, 1, 'Habitación para 5 personas, cuenta con una cama matrimonial y 3 camas de una plaza, cuenta con Televisión por cable, WiFi, un baño y vista a las sierras', NULL),
 (1, 2, 3, 2, 2, 1, 1, 'NULL', NULL),
 (1, 4, 3, 3, 1, 1, 1, NULL, NULL),
 (1, 5, 2, 3, 1, 1, 1, NULL, NULL),
@@ -142,19 +156,26 @@ INSERT INTO `hotel` (`id_hotel`, `localidad`, `nombre`, `direccion`, `telContact
 CREATE TABLE `usuario` (
   `email` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
-  `id` decimal(10,0) NOT NULL
+  `id` decimal(10,0) NOT NULL,
+  `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`email`, `password`, `id`) VALUES
-('maga@gmail.com', '$2y$10$3OWZUMXUHdnK0KJ/HqM0bedM7Xy7HorIxX/lL2q0SVJLHTFxiD/tS', '0');
+INSERT INTO `usuario` (`email`, `password`, `id`, `admin`) VALUES
+('coty', '$2y$12$MlTWZNQCuFB.gauq3eyuyuh4DZ9M5u49vOYgyTfaXqpgGzs8WISJ.', '0', 1);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `habitacion`

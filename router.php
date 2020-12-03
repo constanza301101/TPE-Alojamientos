@@ -24,6 +24,8 @@
     $r->addRoute("login", "GET", "UserController", "Login");
     $r->addRoute("logout", "GET", "UserController", "Logout");
     $r->addRoute("VerificarUsuario", "POST", "UserController", "VerificarUsuario");
+    $r->addRoute("registrar", "GET", "loginController", "showRegisterForm");
+    $r->addRoute("registerUser", "POST", "loginController", "registerUser");
     
     $r->addRoute("verMasHabitacion/:IDHA/:IDHO", "GET", "PublicController", "ShowHabitacion");
 
@@ -43,9 +45,12 @@
     $r->addRoute("FormEditHab/:IDHA/:IDHO", "GET", "AdminController", "mostrarFormHab");
     $r->addRoute("editarHotel/:ID", "POST", "AdminController", "editarHotel");
     
+     //admin
+     $r->addRoute("editUser/:ID", "GET", "AdminController", "editUserMode"); 
+     $r->addRoute("editarUsuario/:ID", "POST", "AdminController", "editUser"); 
+     
     //Ruta por defecto.
     $r->setDefaultRoute("PublicController", "Home");  
- 
 
     //run
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 

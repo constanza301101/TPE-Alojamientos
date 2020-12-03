@@ -131,5 +131,45 @@
     } 
 
 
+
+//Rol del admin-> edit user
+    
+   
+    function editUserMode($params = null) {
+        $this->helper->sessionController();
+        if((isset($params[':ID']))){
+            $user_id = $params[':ID'];
+            $user = $this->userModel->getUserById($user_id);
+            if ($user){
+                $this->AdminView->renderEditUser($user);
+            }
+            else{
+                $this->AdminView->renderError("No hay usuarios con el ID= $user_id");
+            } 
+        }
+        else{
+            $this->AdminView->renderError("Ocurrió un error");
+        }
+    }
+
+    function editUser($params = null){
+        $this->helper->sessionController();
+        if((isset($params[':ID'])) && (isset($_POST['input_isAdmin']))){
+            $user_id = $params[':ID'];
+            $isAdmin = $_POST['input_isAdmin'];
+            if ($isAdmin == 0 || $isAdmin == 1 ) {
+                $action=$this->userModel->editPermission($user_id, $isAdmin);
+                if($action > 0){
+                    $this->AdminView->ShowAdmin();
+                }else{
+                    $this->AdminView->renderError("No se pudo editar el usuario $user_id. ");
+                }
+            }else{
+                $this->AdminView->renderError("Ocurrió un error");
+            }
+        }
+    }
+
+
  }
 ?>    

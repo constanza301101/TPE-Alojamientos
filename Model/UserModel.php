@@ -12,12 +12,20 @@ class UserModel {
         $sentencia->execute(array($mail));
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
+/* funcion que traiga todos los usuarios
+function getAllUsers(){
+            $query=$this->db->prepare('SELECT * FROM usuario');
+
+funcion que los guarde 
+function saveUser(paso el nombre, el mail y el passwordhass){
+            $query = $this->db->prepare("INSERT INTO usuario(nombre, mail, password) VALUES(?,?,?)");
+
+funcion que los obtenga 
+con un select
+
+funcion que si son admin puedan editar
+'UPDATE usuario SET admin=? WHERE id=?'
 
 
-
-
-
-
-
-
+*/
 }
