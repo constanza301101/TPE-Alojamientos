@@ -1,4 +1,4 @@
-<!doctype html>
+    <!doctype html>
         <html lang="en">
             <head>
             <!-- Required meta tags -->
@@ -8,7 +8,15 @@
             <!-- Bootstrap CSS -->
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
              
-            <title>{$titulo_s}</title>
+            <title>RESERVA DE HOTELES</title>
+            <!--BARRA DE NAVEGACIÓN-->
+    <nav class="botoneratexto">
+        <ul class="menu">
+            <li class="botones"><a class="link" href="home">Habitaciones</a></li>
+            <li class="botones"><a class="link" href="hotel">Hoteles</a></li>
+            <li class="botones"><a class="link" href="login"><i class="fa fa-user-o"></i></a></li>
+        </ul>
+    </nav>
             </head>
             <body>
-            
+    <!--CONTINUA LA TABLA-->

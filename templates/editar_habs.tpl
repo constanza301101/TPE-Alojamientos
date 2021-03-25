@@ -1,49 +1,16 @@
 {include file="header.tpl"}
-{include file="NavBar.tpl"}
-<form action="editarHab" method="POST">
-
-    <div class="tabla_inputs">
-        <label>Habitacion</label>
-            <div class="respuesta">
-                <input class="input_habitacion" name="input_habitacion" type="text" value="{$habitacion->id}" placeholder="{$habitacion->id}">
-            </div>
-            <div class="respuesta">
-                <select name="input_hotel">';
-                    {foreach from=$hoteles item=hotel}
-                        <option value="{$hotel->id_hotel}">{$hotel->nombre}</option>
-                    {/foreach}
-                </select>
-            </div>
-            <label>Capacidad Maxima</label>
-            <div class="respuesta">
-                <input class="input_capacidadMaxima" name="input_capacidadMaxima" type="text" value="{$habitacion->capacidadMax}" placeholder="{$habitacion->capacidadMax}">
-            </div>
-            <label>Cantidad de Camas</label>
-            <div class="respuesta">
-                <input class="input_cantCamas" name="input_cantCamas" type="text" value="{$habitacion->cantCamas}" placeholder="{$habitacion->cantCamas}">
-            </div>
-            <label>Cantidad de Baños</label>
-            <div class="respuesta">
-                <input class="input_cantBanios" name="input_cantBanios" type="text" value="{$habitacion->cantBanios}" placeholder="{$habitacion->cantBanios}">
-            </div>   
-            <label>Wifi</label>
-                <div class="respuesta">
-                    <input class="input_WiFi" name="input_Wifi" type="text" value="{$habitacion->WiFi}" placeholder="{$habitacion->WiFi}">
-                </div>
-            <label>TV</label>
-                <div class="respuesta">
-                    <input class="input_tv" name="input_tv" type="text" value="{$habitacion->tv}" placeholder="{$habitacion->tv}">
-                </div>  
-            <label>Descripcion</label>
-                <div class="respuesta">
-                    <input class="input_descriptionHab " name="input_descriptionHab " type="text" value="{$habitacion->descripcion}" placeholder="{$habitacion->descripcion}">
-                </div>   
-            <label>Hotel</label>
-            
-        <div>
-            <button type="submit">Editar</button>
-            <button><a href="{BASE_URL}habitaciones">Cancelar</a></button>
-        </div>
-    </div>
-<form>   
+<!--HTML EDITAr habs-->
+<h1>editar Habs</h1>
+<form action="updateHabs/{$habitacion->id_habitacion}" method="post">
+     <input class="input" type="text" name="edit_habitacion" placeholder="Habitacion" value="{$Habitacion->habitacion }" required>
+    <input class="input" type="text" name="edit_hotel" placeholder="Hotel" value="{$Habitacion->hotel }" required>
+    <input class="input" type="text" name="edit_capacidadMax" placeholder="Capacidad Maxima" value="{$Habitacion->capacidadMax}" required>
+    <input class="input" type="text" name="edit_cantCamas" placeholder="Cant. Camas" value="{$Habitacion->cantCamas }" required>
+    <input class="input" type="text" name="edit_cantBanios" placeholder="Cant. baños" value="{$Habitacion->cantBanios }" required>
+    <input class="input" type="text" name="edit_wifi" placeholder="wifi" value="{$Habitacion->wifi }" required>
+    <input class="input" type="text" name="edit_tv" placeholder="tv" value="{$Habitacion->tv }" required>
+    <input class="input" type="text" name="edit_descripcion" placeholder="descripcion" value="{$Habitacion->descripcion }" required>
+    <input class="input" type="text" name="edit_estado" placeholder="estado" value="{$Habitacion->estado }" required>
+    <button class="btn" type="submit">actualizar</button>
+</form>
 {include file="footer.tpl"}

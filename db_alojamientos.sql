@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2020 a las 13:52:39
+-- Tiempo de generación: 25-03-2021 a las 00:48:49
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.6
 
@@ -28,13 +28,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `comentarios` (
-  `id` int(11) NOT NULL,
-  `id_usuario` varchar(55) NOT NULL,
-  `id_habitacion` int(11) NOT NULL,
-  `id_hotel` int(11) NOT NULL,
-  `puntuaje` int(11) NOT NULL,
-  `comentario` int(255) NOT NULL
+  `id_comentario` int(11) NOT NULL,
+  `comentario` varchar(200) NOT NULL,
+  `valoracion` int(1) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_habitacion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`id_comentario`, `comentario`, `valoracion`, `id_usuario`, `id_habitacion`) VALUES
+(1, 'Muy buen servicio', 4, 1, 11),
+(2, 'Amplias habitaciones, buen servicio', 4, 2, 13);
 
 -- --------------------------------------------------------
 
@@ -150,6 +157,18 @@ INSERT INTO `hotel` (`id_hotel`, `localidad`, `nombre`, `direccion`, `telContact
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `imagen`
+--
+
+CREATE TABLE `imagen` (
+  `id` int(11) NOT NULL,
+  `imagen` text NOT NULL,
+  `habitacion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -165,7 +184,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`email`, `password`, `id`, `admin`) VALUES
-('coty', '$2y$12$MlTWZNQCuFB.gauq3eyuyuh4DZ9M5u49vOYgyTfaXqpgGzs8WISJ.', '0', 1);
+('coty@gmail.com', '$$2y$12$6A31xJxULGfXAEuIALqwqepgqhxAJh0pKfa2MzTSWppFLv47p1kjO', '1', 1),
+('usuario1@gmail.com', '$2y$12$RyuSEnUrMNTojTM3mDS4..Km0sf7ct8Xy.uWDSK.LeWSvDssMusPy ', '2', 0);
 
 --
 -- Índices para tablas volcadas
@@ -175,7 +195,7 @@ INSERT INTO `usuario` (`email`, `password`, `id`, `admin`) VALUES
 -- Indices de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_comentario`);
 
 --
 -- Indices de la tabla `habitacion`
@@ -189,6 +209,12 @@ ALTER TABLE `habitacion`
 --
 ALTER TABLE `hotel`
   ADD PRIMARY KEY (`id_hotel`);
+
+--
+-- Indices de la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `usuario`

@@ -1,9 +1,10 @@
 <?php
-    require_once 'Controller/AdminController.php';
-    require_once 'Controller/UserController.php';
-    require_once 'Controller/PublicController.php';
+    require_once 'Controller/HabitacionController.php';
+    require_once 'Controller/HotelController.php';
+    require_once 'Controller/LoginController.php';
+    //require_once 'Controller/UserController.php';
     require_once 'routerClass.php';
-    
+
     // CONSTANTES PARA RUTEO
     define('BASE_URL','//'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].dirname($_SERVER['PHP_SELF']).'/');
     define("LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
@@ -12,49 +13,38 @@
 
     $r = new Router();
 
-    // rutas
-    $r->addRoute("home", "GET", "PublicController", "Home");
-    $r->addRoute("habsporhotel", "POST", "PublicController", "HabitacionesPorHotel");
-    $r->addRoute("habitaciones", "GET", "PublicController", "showHabitaciones");
-    $r->addRoute("hoteles", "GET", "PublicController", "showHoteles");
-    
-   
-
-    //Login/Logout
-    $r->addRoute("login", "GET", "UserController", "Login");
-    $r->addRoute("logout", "GET", "UserController", "Logout");
-    $r->addRoute("VerificarUsuario", "POST", "UserController", "VerificarUsuario");
-    $r->addRoute("registrar", "GET", "loginController", "showRegisterForm");
-    $r->addRoute("registerUser", "POST", "loginController", "registerUser");
-    
-    $r->addRoute("verMasHabitacion/:IDHA/:IDHO", "GET", "PublicController", "ShowHabitacion");
-
-    //borrar
-    $r->addRoute("deleteHabitacion/:IDHA/:IDHO", "GET", "AdminController", "DeleteHabitacion");
-    $r->addRoute("deleteHotel/:ID", "GET", "AdminController", "DeleteHotel");
-
-    //insertar
-    $r->addRoute("FormInsertHotel", "GET", "AdminController", "mostrarFormHotel");
-    $r->addRoute("insertarHab", "POST", "AdminController", "agregar_habs");
-    $r->addRoute("FormInsertHab", "GET", "AdminController", "mostrarFormInsertHab");
-    $r->addRoute("insertHotel", "POST", "AdminController", "agregar_hotels");
-
-    //editar
-    $r->addRoute("FormEditHotel/:ID", "GET", "AdminController", "mostrarFormHotel");
-    $r->addRoute("editarhab", "POST", "AdminController", "editarHabs");
-    $r->addRoute("FormEditHab/:IDHA/:IDHO", "GET", "AdminController", "mostrarFormHab");
-    $r->addRoute("editarHotel/:ID", "POST", "AdminController", "editarHotel");
-    
-     //admin
-     $r->addRoute("editUser/:ID", "GET", "AdminController", "editUserMode"); 
-     $r->addRoute("editarUsuario/:ID", "POST", "AdminController", "editUser"); 
-     
+    //HOME
+    $r->addRoute("home/:PAGE", "GET", "HabitacionController", "Home");
+    $r->addRoute("Hotel", "GET", "MHotelController", "HomeMHotel");
+    $r->addRoute("filterHotel", "POST", "HabitacionController", "FilterHabitacionByHotel");
+    $r->addRoute("itemDetail/:ID", "GET", "HabitacionController", "ItemDetail");
+    $r->addRoute("search", "POST", "HabitacionController", "SearchItem");
+    //LOGIN
+    $r->addRoute("login", "GET", "LoginController", "Login");
+    $r->addRoute("register", "GET", "LoginController", "Register");
+    $r->addRoute("newUser", "POST", "LoginController", "NewUser");
+    $r->addRoute("verify", "POST", "LoginController", "VerifyUser");
+    $r->addRoute("admin", "GET", "LoginController", "ShowAdmin");
+    $r->addRoute("logout", "GET", "LoginController", "Logout");
+    //HABITACION
+    $r->addRoute("insert", "POST", "HabitacionController", "InserHabitacion");
+    $r->addRoute("delete/:ID", "GET", "HabitacionController", "DeletHabitacion");
+    $r->addRoute("edit/:ID", "GET", "HabitacionController", "EdiHabitacion");
+    $r->addRoute("update/:ID", "POST", "HabitacionController", "UpdatHabitacion");
+    //HOTEL
+    $r->addRoute("insertHotel", "POST", "HotelController", "InsertHotel");
+    $r->addRoute("deleteHotel/:ID", "GET", "HotelController", "DeleteHotel");
+    $r->addRoute("editHotel/:ID", "GET", "HotelController", "EditHotel");
+    $r->addRoute("updateHotel/:ID", "POST", "HotelController", "UpdateHotel");
+    //ADMIN USER
+    $r->addRoute("adminUsers", "GET", "UserController", "ShowUsers");
+    $r->addRoute("editUser/:ID", "GET", "UserController", "EditUser");
+    $r->addRoute("updateUser/:ID", "POST", "UserController", "UpdateUser");
+    $r->addRoute("deleteUser/:ID", "GET", "UserController", "DeleteUser");
+    //ELIMINA IMAGEN
+    $r->addRoute(":HABITACION/deleteImg/:ID", "GET", "HabitacionController", "DeleteImg");
     //Ruta por defecto.
-    $r->setDefaultRoute("PublicController", "Home");  
-
+    $r->setDefaultRoute("HabitacionController", "Home");
     //run
-    $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 
-?>
-
-
-
+    //$r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
+    ?>

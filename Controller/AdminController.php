@@ -1,175 +1,106 @@
 <?php
+    require_once "./View/UserView.php";
+    require_once "./View/habitacionView.php";
+    require_once "./Model/UserModel.php";
+    require_once "Helper.php";
 
- require_once ('./Model/HotelModel.php');
- require_once ('./Model/HabitacionModel.php');
- require_once ('./View/AdminView.php');
- require_once ('UserController.php');
- require_once ('./helpers/AuthHelper.php');
+    class UserController extends Helper {
 
+        private $view; 
+        private $model;
+        private $habsView;
 
- class AdminController{
-     private $AdminView;
-     private $publicView;
-     private $HabitacionModel;
-     private $HotelModel;
-     private $UserModel;
-     private $helper;
-
-     public function __construct(){
-         $this->HotelModel = new HotelModel();
-         $this->HabitacionModel = new HabitacionModel();
-         $this->AdminView = new AdminView();
-         $this->UserModel = new UserModel();
-        $this->helper= new AuthHelper();
-        $this->publicView= new PublicView();
-     }
- 
-
-    function agregar_hotels(){
-        if((isset($_POST['input_hotel'])) && (isset($_POST['input_localidad'])) 
-            && (isset($_POST['input_direccion'])) && (isset($_POST['input_telContacto'])))  {
-
-            $hotel= $_POST['input_hotel'];
-            $nombre = $_POST['input_nombre'];
-            $localidad = $_POST['input_localidad'];
-            $direccion = $_POST['input_direccion'];
-            $telContacto = $_POST['input_telContacto'];
-            $val = $_POST['input_valoracion'];
-            $descripcion = $_POST['input_descripcion'];
-            $this->HotelModel->InsertHotel($hotel,  $localidad, $nombre, $direccion, $telContacto, $val, $descripcion);
-            $this->publicView->renderHoteles($this->HotelModel->GetHotels(), $this->helper->checkLogIn());
+        function __construct(){
+            $this->view= new UserView();
+            $this->model= new UserModel();
+            $this->habsView = new HabitacionView();
+        }
+     //VISTA PARA EL ADMINISTRADOR DE LOS USUARIOS
+     function ShowUsers(){
+        $logeado = $this->checkLoggedIn();
+        if($logeado && $_SESSION['ADMIN'] == 1){
+            $users = $this->model->GetUsers();
+            $this->view->ShowUsers($users);
+        }else{
+            $this->habsView->ShowLocation('login');
         }
     }
-    
-    function agregar_habs(){
-        if((isset($_POST['input_habitacion'])) && (isset($_POST['input_hotel'])) && (isset($_POST['input_capacidadMaxima'])))
-        {
-
-            $habitacion= $_POST['input_habitacion'];
-            $hotel = $_POST['input_hotel'];
-            $capacidadMaxima = $_POST['input_capacidadMaxima'];
-            $cantCamas = $_POST['input_cantCamas'];
-            $cantBanios = $_POST['input_cantBanios'];
-            $WiFi = $_POST['input_Wifi'];
-            $Tv = $_POST['input_TV'];
-            $descripcionHab = $_POST['input_descripcion'];
-            
-            $this->HabitacionModel->InsertHab($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios,  $WiFi, $Tv, $descripcionHab);
-            $this->AdminView->renderHabitaciones($this->HabitacionModel->GetHabs(), $this->helper->checkLogIn());
-
+    //LLAMA A LA VISTA PARA EDITAR UN USUARIO
+    function EditUser($params = null){
+        $logeado = $this->checkLoggedIn();
+        if($logeado && $_SESSION['ADMIN'] == 1){
+            $id = $params[':ID'];
+            $user = $this->model->GetUserById($id);
+            $this->view->ShowEdit($user);
+        }else{
+            $this->habsView->ShowLocation('login');
         }
     }
-
-    function mostrarFormHotel(){
-        //mostrar form para cargar nuevo hotel
-    }
-
-    function mostrarFormInsertHab(){
-        $hoteles=$this->HotelModel->GetHotels();
-        $this->AdminView->AgregarHabs($hoteles,$this->helper->checkLogIn());
-    }
-
-
-    function mostrarFormHab($params=null){
-        $idHabitacion=$params[':IDHA'];
-        $idHotel=$params[':IDHO'];
-        $habitacion=$this->HabitacionModel->GetHab($idHabitacion, $idHotel);
-        $hoteles=$this->HotelModel->GetHotels();
-        $this->AdminView->editarHabs($habitacion,$hoteles,$this->helper->checkLogIn());
-    }
-        
-    function editarHotel($params = null){
-        if((isset($_POST['input_hotel'])) &&  (isset($_POST['input_localidad']))
-        && (isset($_POST['input_direccion'])) && (isset($_POST['input_telContacto']))  
-        && (isset($_POST['input_Valoracion'])) && (isset($_POST['input_descriptionHot']))){
-
-            $hotel= $_POST['input_hotel'];
-            $nombre = $_POST['input_Nombre'];
-            $localidad = $_POST['input_localidad'];
-            $direccion = $_POST['input_direccion'];
-            $telContacto = $_POST['input_telContacto'];
-            $descripcionHot = $_POST['input_descriptionHot'];
-
-            $this->HotelModel->ActualizVaraloresHot($hotel, $nombre, $localidad, $direccion, $telContacto, $descripcionHot);
-            $this->publicView->renderHoteles($this->HotelModel->GetHotels(), $this->helper->checkLogIn());
-
-        }
-    }
-
-    function editarHabs(){
-        if((isset($_POST['input_habitacion'])) && (isset($_POST['input_hotel'])) && (isset($_POST['input_capacidadMaxima']))){
-            $habitacion= $_POST['input_habitacion'];
-            $hotel = $_POST['input_hotel'];
-            $capacidadMaxima = $_POST['input_capacidadMaxima'];
-            $cantCamas = $_POST['input_cantCamas'];
-            $cantBanios = $_POST['input_cantBanios'];
-            $WiFi = $_POST['input_Wifi'];
-            $Tv = $_POST['input_tv'];
-            $descripcionHab = $_POST['input_descriptionHab'];
-            $this->HabitacionModel->ActualizarValoresHab($habitacion, $hotel, $capacidadMaxima, $cantCamas, $cantBanios, $Tv , $WiFi, $descripcionHab, $idHabitacion,$idHotel);
-            $this->AdminView->renderHabitaciones($this->HabitacionModel->GetHabs(),$this->helper->checkLogIn()); 
-
-
-        }else {
-            $this->AdminView->showError("Ingrese todos los campos", $this->helper->checkLogIn());
-        }
-    }
-
-
-    function  DeleteHotel($params=null) {
-        $id_hotel= $params[':ID'];
-        $this->HotelModel->DeleteHotel($id_hotel);
-        $this->publicView->renderHoteles($this->HotelModel->GetHotels(), $this->helper->checkLogIn());
-
-    }
-
-    function  DeleteHabitacion($params=null) {
-        $idHabitacion=$params[':IDHA'];
-        $idHotel=$params[':IDHO'];
-        $this->HabitacionModel->DeleteHab($idHabitacion,$idHotel);
-        $this->AdminView->renderHabitaciones($this->HabitacionModel->GetHabs(),$this->helper->checkLogIn()); 
-    } 
-
-
-
-//Rol del admin-> edit user
-    
-   
-    function editUserMode($params = null) {
-        $this->helper->sessionController();
-        if((isset($params[':ID']))){
-            $user_id = $params[':ID'];
-            $user = $this->userModel->getUserById($user_id);
-            if ($user){
-                $this->AdminView->renderEditUser($user);
-            }
-            else{
-                $this->AdminView->renderError("No hay usuarios con el ID= $user_id");
-            } 
-        }
-        else{
-            $this->AdminView->renderError("Ocurrió un error");
-        }
-    }
-
-    function editUser($params = null){
-        $this->helper->sessionController();
-        if((isset($params[':ID'])) && (isset($_POST['input_isAdmin']))){
-            $user_id = $params[':ID'];
-            $isAdmin = $_POST['input_isAdmin'];
-            if ($isAdmin == 0 || $isAdmin == 1 ) {
-                $action=$this->userModel->editPermission($user_id, $isAdmin);
-                if($action > 0){
-                    $this->AdminView->ShowAdmin();
-                }else{
-                    $this->AdminView->renderError("No se pudo editar el usuario $user_id. ");
+    //ACTUALIZA LOS DATOS DE UN USUARIO 
+    function UpdateUser($params = null){
+        $logeado = $this->checkLoggedIn();
+        if($logeado && $_SESSION['ADMIN'] == 1){
+            $id = $params[':ID'];
+            $user = $this->model->GetUserById($id);
+            if($user->admin == 0){
+                if(isset($_POST['selectAdmin'])){
+                    $admin = $_POST['selectAdmin'];
+                    $this->model->UpdateUser($admin, $id);
+                    $this->habsView->ShowLocation('adminUsers');
                 }
             }else{
-                $this->AdminView->renderError("Ocurrió un error");
+                $existsAdmin = $this->model->ExistsAdmin();
+                $numberOfAdmin = 0;
+                foreach($existsAdmin as $admin){
+                    $numberOfAdmin++;
+                }
+                if($numberOfAdmin != 1 && $numberOfAdmin != 0){
+                    if($user->email != $_SESSION['EMAIL']){
+                       if(isset($_POST['selectAdmin'])){
+                            $admin = $_POST['selectAdmin'];
+                            $this->model->UpdateUser($admin, $id);
+                            $this->habsView->ShowLocation('adminUsers');
+                        }
+                    }else{
+                        $this->view->ShowEdit($user, "No se pueden cambiar permisos, ya que estás haciendo uso de este administrador.");
+                    }
+                }else{
+                    $this->view->ShowEdit($user, "No se pueden quitar permisos ya que es el ultimo administrador del sistema.");
+                }
             }
+        }else{
+            $this->habsView->ShowLocation('login');
         }
     }
-
-
- }
-?>    
+    //ELIMINA UN USUARIO
+    function DeleteUser($params = null){
+        $logeado = $this->CheckLoggedIn();
+        if($logeado && $_SESSION['ADMIN'] == 1){
+            $id = $params[':ID'];
+            $typeOfUser = $this->model->GetUserById($id);
+            if($typeOfUser->admin == 0){
+                $this->model->DeleteUser($id);
+                $this->habsView->ShowLocation('adminUsers');
+            }else{
+                $existsAdmin = $this->model->ExistsAdmin();
+                $numberOfAdmin = 0;
+                foreach($existsAdmin as $admin){
+                    $numberOfAdmin++;
+                }
+                if($typeOfUser->email == $_SESSION['EMAIL']){
+                    $users = $this->model->GetUsers();
+                    $this->view->ShowUsers($users, "No se puede eliminar este usuario ya que está haciendo uso de este.");
+                }else if($numberOfAdmin != 1 && $numberOfAdmin != 0){
+                    $this->model->DeleteUser($id);
+                    $this->habsView->ShowLocation('adminUsers');
+                }else{
+                    $users = $this->model->GetUsers();
+                    $this->view->ShowUsers($users, "No se puede eliminar este usuario ya que es el ultimo administrador del sistema.");
+                }
+            }
+        }else{
+            $this->habsView->ShowLocation('login');
+        }
+    }
+}
+?>

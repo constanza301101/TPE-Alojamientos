@@ -5,27 +5,46 @@ class UserModel {
 
     function __construct(){
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_alojamientos;charset=utf8', 'root', '');
+        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-     
-    function getUsuario($mail){
+    //TRAIGO UN USUARIO POR EMAIL
+    function GetUser($user){
         $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE email=?");
-        $sentencia->execute(array($mail));
+        $sentencia->execute(array($user));
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
-/* funcion que traiga todos los usuarios
-function getAllUsers(){
-            $query=$this->db->prepare('SELECT * FROM usuario');
-
-funcion que los guarde 
-function saveUser(paso el nombre, el mail y el passwordhass){
-            $query = $this->db->prepare("INSERT INTO usuario(nombre, mail, password) VALUES(?,?,?)");
-
-funcion que los obtenga 
-con un select
-
-funcion que si son admin puedan editar
-'UPDATE usuario SET admin=? WHERE id=?'
-
-
-*/
+    //BUSCO TODOS LOS USUARIOS
+    function GetUsers(){
+        $sentencia = $this->db->prepare("SELECT * FROM usuario");
+        $sentencia->execute();
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+    //TRAIGO UN SOLO USUARIO POR UN ID
+    function GetUserById($id){
+        $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE id=?");
+        $sentencia->execute(array($id));
+        return $sentencia->fetch(PDO::FETCH_OBJ);
+    }
+    //CREA UN USUARIO
+    function CreateUser($user, $password_hash, $admin){
+        $sentencia = $this->db->prepare("INSERT INTO usuario (email, password, admin) VALUES(?,?,?)");
+        $sentencia->execute(array($user,$password_hash,$admin));
+    }
+    //EDITO UN USUARIO
+    function UpdateUser($admin, $id){
+        $sentencia = $this->db->prepare("UPDATE usuario SET admin=? WHERE id=?");
+        $sentencia->execute(array($admin, $id));
+    }
+    //BORRO UN USUARIO
+    function DeleteUser($id){
+        $sentencia = $this->db->prepare("DELETE FROM usuario WHERE id=?");
+        $sentencia->execute(array($id));
+    }
+    //BUSCA SI EXISTE ALMENOS UN ADMINISTRADOR
+    function ExistsAdmin(){
+        $sentencia = $this->db->prepare("SELECT admin FROM usuario WHERE admin=?");
+        $sentencia->execute(array(1));
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
 }
+?>

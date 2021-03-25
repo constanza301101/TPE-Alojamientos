@@ -1,72 +1,41 @@
 <?php
 require_once './Model/ComentariosModel.php';
-require_once './Model/UserModel.php';
-require_once './apiapiController.php';
-require_once './Helpers/AuthHelper.php';
-require_once './Controller/AdminController.php';
+require_once 'apiController.php';
 
 class apiComentariosController extends apiController {
-    private $comentariostModel;
-    private $userModel;
-    private $view;
 
     function __construct() {
         parent::__construct();
-        $this->comentariosModel = new ComentariosModel();
-        $this->userModel = new UserModel();
-        $this->view = new apiView();
+        $this->model = new ComentariosModel();
     }
 
-    public function showComentarios($params = null) {
-        $comentarios = $this->comentariosModel->getComentarios();
-        if(!empty($comentarios)){
-            $this->view->response($comentarios, 200);
+    public function GetComments($params = null) {
+        $id_habitacion = $params[':ID'];
+        $comments = $this->model->GetCommentByhabitacion($id_habitacion);
+        if (!empty($comments) || sizeof($comments) == 0) {
+            $this->view->response($comments, 200);
         }else{
-            $this->view->response("No hay comentarios", 404);
-        }
-        
-    }
-
-    public function showComentarios($params = null){
-        $id = $params[':ID'];
-        $comentario = $this->comentariosModel->getComentarios($id);
-        if (!empty($comentario)){
-            $this->view->response($comentarios, 200);
-        }
-        else {
-            $this->view->response("El comentario no existe", 404);
-        }
-    }
-    
-    public function deleteComentarios($params = null) {
-        $id = $params[':ID'];
-        $resultado = $this->comentariosModel->deleteComentarios($id);
-        
-        if($resultado > 0){
-            $this->view->response("El comentario con el id=$id fue eliminado", 200);
-        }
-        else{
-            $this->view->response("El comentario con el id=$id no existe", 404);
+            $this->view->response($comments, 404);
         }
     }
 
-    public function addComentarios($params=[]){
-        // devuelve el objeto JSON enviado por POST
+    public function InsertComment($params = null){
         $body = $this->getData();
+        if($body->comentario && $body->valoracion){
+            $idComment = $this->model->InsertComment($body->comentario, $body->valoracion, $body->id_usuario,$body->id_habitacion);
 
-        $idUsuario = $body->usuario_id;
-        $idHotel = $body->hotel_id;
-        $puntaje = $body->puntaje;
-        $comentario = $body->comentario;
-
-        $response = $this->comentariossModel->addComentariosModel($idUsuario, $idHotel, $puntaje, $comentario);
-        if (!empty($response)) {
-            $this->view->response($this->comentariosModel->getComentarios(), 200);
-            die();
-        }else{
-            $this->view->response("El comentario no se pudo insertar", 404);
-            die();
+            if (!empty($idComment)) {
+                $this->view->response($this->model->GetComment($idComment), 201);
+            }
         }
     }
 
+    public function DeleteComment($params = null){
+        $id = $params[':ID'];
+        $result = $this->model->DeleteComment($id);
+
+        if($result > 0) {
+            $this->view->response("El comentario con el id=$id fue eliminada", 200);
+        }
+    }
 }

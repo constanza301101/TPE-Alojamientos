@@ -1,5 +1,5 @@
-{include file="header.tpl" }
-<!--SELECTOR DE HOTEL PARA FILTRAR-->
+include file="header.tpl"}
+<!--SI ES USUARIO-->
 {if $user}
     <div class="contenedor_logout_user">
         <h3>{$user}</h3>
@@ -10,15 +10,15 @@
         </div>
     </div>
 {/if}
+<!--SELECTOR DE HOETEL PARA FILTRAR-->
 {include file="selectHotel.tpl"}
 <!--BUSCADOR-->
 {include file="search.tpl"}
-<!--TABLA CON TODOS LAAS HABITACIONES-->
+<!--TABLA CON TODOS LAS HASB-->
 <section class="contenedor_table">
     <table class="table">
         <caption class="titulo_table">{$title}</caption>
-        <thead>
-            <tr>
+          <tr>
                 <th>habitacion</th>
                 <th>hotel</th>
                 <th>capacidad Maxima</th>
@@ -42,23 +42,16 @@
                     <td>{$habitacion->tv}</td>
                     <td>{$habitacion->descripcion}</td>
                     <td>{$habitacion->estado}</td>
+
+                    {foreach from=$hotels item=hotel}
+                        {if hotel->id_hotel == $habitacion->id_hotel}
+                            <td>{hotel->hotel}</td>
+                        {/if}
+                    {/foreach}
                     <td class="excepcion"><button class="verMas" type="button"><a href="itemDetail/{$habitacion->id}">ver más</a></button></td>
                 </tr>
             {/foreach}
         </tbody>
     </table>
 </section>
-<nav >
-<ul class="navCompaginacion">
-    {foreach from=$pagination item=index}
-        <li class="liCompagnacion">
-           {if $index == $page}
-                <a class="linkCompaginacion marcado" href="home/{$index}">{$index}</a>
-            {else}
-                <a class="linkCompaginacion" href="home/{$index}">{$index}</a>
-            {/if}
-        </li>
-    {/foreach}
-</ul>
-</nav>
-{include file="footer.tpl" }
+{include file="footer.tpl"}
